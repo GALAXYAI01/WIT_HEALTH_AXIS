@@ -6,6 +6,7 @@ from typing import Any, List, Literal
 
 from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -121,6 +122,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Disease Detection Framework API", lifespan=lifespan)
+
+UI_ROOT = Path(__file__).resolve().parent.parent / "UI" / "stitch_wit_research_and_analysis"
 
 
 def _truthy(value: str | None) -> bool:
@@ -526,3 +529,7 @@ async def predict(
         update_scan(scan_id, status="Failed", error_message=str(exc)[:500])
         record_audit(request, "scan_failed", "scan", scan_id, {"module": module, "error": str(exc)[:300]})
         raise
+
+
+if UI_ROOT.is_dir():
+    app.mount("/", StaticFiles(directory=UI_ROOT, html=True), name="ui")

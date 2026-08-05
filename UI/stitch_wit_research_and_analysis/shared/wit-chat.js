@@ -1,7 +1,9 @@
 (function () {
-  const API_BASE = typeof window !== "undefined" && window.location && window.location.protocol === "https:"
-    ? "https://127.0.0.1:8000"
-    : "http://127.0.0.1:8000";
+  const host = window.location.hostname || "127.0.0.1";
+  const localHost = host === "127.0.0.1" || host === "localhost" || window.location.protocol === "file:";
+  const API_BASE = window.WIT_API_BASE || (localHost
+    ? `${window.location.protocol === "https:" ? "https" : "http"}://${host}:8000`
+    : window.location.origin);
   const PAGE_URLS = {
     home: "../home_wit_research_analysis/code.html",
     about: "../about_wit_research_analysis/code.html",

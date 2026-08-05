@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: wit-health-axis
+    runtime: python
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: WIT_COOKIE_SECURE
+        value: "true"
+      - key: WIT_COOKIE_SAMESITE
+        value: lax
+      - key: WIT_ENABLE_HSTS
+        value: "true"
+      - key: WIT_REQUIRE_AUTH
+        value: "true"
+      - key: WIT_ALLOWED_ORIGINS
+        value: ""
+      - key: WIT_HISTORY_DB_PATH
+        value: /tmp/wit-scan-history.db
+      - key: WIT_JWT_SECRET
+        generateValue: true
+      - key: WIT_FIELD_ENCRYPTION_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

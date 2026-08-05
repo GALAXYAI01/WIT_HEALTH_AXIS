@@ -1,5 +1,9 @@
 (function () {
-  const API_BASE = window.location.protocol === "https:" ? "https://127.0.0.1:8000" : "http://127.0.0.1:8000";
+  const host = window.location.hostname || "127.0.0.1";
+  const localHost = host === "127.0.0.1" || host === "localhost" || window.location.protocol === "file:";
+  const API_BASE = window.WIT_API_BASE || (localHost
+    ? `${window.location.protocol === "https:" ? "https" : "http"}://${host}:8000`
+    : window.location.origin);
   const labels = { malaria: "Malaria", leukemia: "Leukemia", histopathology: "Histopathology" };
   const byId = (id) => document.getElementById(id);
   const csrf = () => document.cookie.split(";").map((part) => part.trim()).find((part) => part.startsWith("csrf_token="))?.slice(11) || "";
