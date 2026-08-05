@@ -9,6 +9,10 @@ from cryptography.fernet import Fernet, InvalidToken
 @lru_cache(maxsize=1)
 def _fernet() -> Fernet | None:
     key = os.environ.get("WIT_FIELD_ENCRYPTION_KEY", "").strip()
+    prefix = "WIT_FIELD_ENCRYPTION_KEY="
+    if key.startswith(prefix):
+        key = key[len(prefix):].strip()
+    key = key.strip('"').strip("'")
     if not key:
         return None
     try:

@@ -62,9 +62,18 @@ from src.config import MODULES
 
 load_dotenv()
 LOGGER = logging.getLogger("wit.api")
+def clean_secret_value(name: str) -> str:
+    value = os.environ.get(name, "").strip()
+    prefix = name + "="
+    if value.startswith(prefix):
+        value = value[len(prefix):].strip()
+    return value.strip().strip('"').strip("'")
+
+
+GEMINI_API_KEY = clean_secret_value("GEMINI_API_KEY")
 gemini_client = (
-    genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
-    if os.environ.get("GEMINI_API_KEY")
+    genai.Client(api_key=GEMINI_API_KEY)
+    if GEMINI_API_KEY
     else None
 )
 CHAT_MODEL = "gemini-3-flash-preview"
@@ -458,7 +467,7 @@ def update_admin_settings(
 
 @app.post("/chat")
 def chat(req: ChatRequest, request: Request):
-    if not os.environ.get("GEMINI_API_KEY") or gemini_client is None:
+    if not GEMINI_API_KEY or gemini_client is None:
         return {"reply": "Chatbot isn't configured yet - add GEMINI_API_KEY to .env and restart the backend.", "navigate": None}
     contents = [
         {"role": ("model" if m.role == "assistant" else "user"), "parts": [{"text": m.content}]}
