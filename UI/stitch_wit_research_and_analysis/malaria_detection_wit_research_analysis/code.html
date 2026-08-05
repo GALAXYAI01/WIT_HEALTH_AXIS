@@ -5,6 +5,7 @@
 <title>Malaria Detection - WIT RESEARCH &amp; ANALYSIS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/wit-nav.css?v=20260805-v1" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
@@ -64,27 +65,26 @@
 </head>
 <body class="font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col">
 <style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
-<header class="bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<header class="wit-site-header bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
 <div class="flex flex-col w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <div class="flex justify-between items-center h-16">
-<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
-                    WIT RESEARCH &amp; ANALYSIS
-                </div>
-<nav class="hidden md:flex space-x-6 h-full items-center">
+<a class="wit-nav-brand" href="../home_wit_research_analysis/code.html" aria-label="WIT Research and Analysis home"><span class="wit-nav-mark" aria-hidden="true">WIT</span><span class="wit-nav-rule" aria-hidden="true"></span><span class="wit-nav-brand-text">Research &amp; Analysis</span></a>
+<nav class="wit-nav-links hidden md:flex space-x-6 h-full items-center" aria-label="Primary navigation">
 <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../home_wit_research_analysis/code.html">Home</a>
 <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../about_wit_research_analysis/code.html">About</a>
 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 h-full flex items-center cursor-pointer active:opacity-80" href="../detection_wit_research_analysis/code.html">Detection</a>
 <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
 <a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../contact_wit_research_analysis/code.html">Contact</a>
 </nav>
-<div class="flex items-center space-x-4">
-<button class="text-on-surface-variant hover:text-primary p-2">
+<div class="wit-nav-tools flex items-center space-x-4">
+<button class="wit-nav-icon text-on-surface-variant hover:text-primary p-2" type="button" aria-label="Search">
 <span class="material-symbols-outlined">search</span>
 </button>
-<button class="font-label-caps text-label-caps text-primary border border-outline-variant px-3 py-1 rounded">
+<button class="wit-nav-accessibility font-label-caps text-label-caps text-primary border border-outline-variant px-3 py-1 rounded" type="button">
                         Accessibility
-                    </button>
+</button>
 </div>
+<button class="wit-nav-mobile" type="button" aria-label="Open navigation"><span class="material-symbols-outlined" aria-hidden="true">menu</span></button>
 </div>
 </div>
 </header>
@@ -257,6 +257,7 @@
 <script src="../shared/wit-detect.js?v=20260805-preview2"></script>
 <script src="../shared/wit-chat.js?v=20260805-v4"></script>
 <script src="../shared/wit-search.js"></script>
+<script src="../shared/wit-nav.js?v=20260805-v1"></script>
 <script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
 <script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
 </body></html>

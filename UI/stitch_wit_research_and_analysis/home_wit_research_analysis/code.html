@@ -6,6 +6,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/wit-nav.css?v=20260805-v1" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -62,27 +63,25 @@
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
 <style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
-<header class="bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline w-full fixed top-0 z-50">
+<header class="wit-site-header bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline w-full fixed top-0 z-50">
 <div class="flex flex-col w-full px-margin-desktop max-w-container-max mx-auto py-4">
 <div class="flex justify-between items-center w-full">
-<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
-                    WIT RESEARCH &amp; ANALYSIS
-                </div>
+<a class="wit-nav-brand" href="code.html" aria-label="WIT Research and Analysis home"><span class="wit-nav-mark" aria-hidden="true">WIT</span><span class="wit-nav-rule" aria-hidden="true"></span><span class="wit-nav-brand-text">Research &amp; Analysis</span></a>
 <div class="hidden md:flex items-center space-x-6">
-<nav class="flex space-x-6">
+<nav class="wit-nav-links flex space-x-6" aria-label="Primary navigation">
 <a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-caps text-label-caps hover:text-primary transition-colors" href="code.html">Home</a>
 <a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../about_wit_research_analysis/code.html">About</a>
 <a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../detection_wit_research_analysis/code.html">Detection</a>
 <a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
 <a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../contact_wit_research_analysis/code.html">Contact</a>
 </nav>
-<div class="flex items-center space-x-4">
+<div class="wit-nav-tools flex items-center space-x-4">
 <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">search</span>
 <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="#">Accessibility</a>
 </div>
 </div>
 <div class="md:hidden flex items-center">
-<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+<button class="wit-nav-mobile" type="button" aria-label="Open navigation"><span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">menu</span></button>
 </div>
 </div>
 </div>
@@ -254,5 +253,6 @@
 </script>
 <script src="../shared/wit-chat.js?v=20260805-v4"></script>
 <script src="../shared/wit-search.js"></script>
+<script src="../shared/wit-nav.js?v=20260805-v1"></script>
 <script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
 </body></html>

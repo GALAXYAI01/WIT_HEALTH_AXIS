@@ -1,0 +1,350 @@
+:root {
+  --wit-nav-ink: #082a49;
+  --wit-nav-blue: #0d5f91;
+  --wit-nav-cyan: #159ca8;
+  --wit-nav-cyan-soft: #e8f7f8;
+  --wit-nav-line: #d5e1e9;
+  --wit-nav-muted: #5c7181;
+  --wit-nav-surface: rgba(247, 249, 255, .96);
+}
+
+/* One calm header language across the research pages. */
+header.wit-site-header {
+  padding: 0 !important;
+  background: var(--wit-nav-surface) !important;
+  border-color: var(--wit-nav-line) !important;
+  box-shadow: 0 7px 24px rgba(8, 42, 73, .07);
+  backdrop-filter: blur(12px);
+}
+
+header.wit-site-header:not(.fixed) {
+  position: relative;
+}
+
+header.wit-site-header > div {
+  width: min(1440px, calc(100% - 48px)) !important;
+  max-width: none !important;
+  min-height: 72px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+header.wit-site-header > div > div {
+  min-height: 72px;
+  align-items: center !important;
+}
+
+.wit-nav-brand {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  min-height: 32px;
+  color: var(--wit-nav-ink) !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.wit-nav-brand:hover {
+  color: var(--wit-nav-blue) !important;
+}
+
+.wit-nav-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  background: var(--wit-nav-ink);
+  color: #fff;
+  font: 700 10px/1 "Public Sans", sans-serif;
+  letter-spacing: .02em;
+}
+
+.wit-nav-rule {
+  width: 22px;
+  height: 2px;
+  flex: 0 0 22px;
+  background: var(--wit-nav-cyan);
+}
+
+.wit-nav-brand-text {
+  color: var(--wit-nav-blue);
+  font: 700 15px/1 "Public Sans", sans-serif;
+  letter-spacing: .045em;
+}
+
+header.wit-site-header nav.wit-nav-links,
+header.wit-site-header nav[aria-label="Primary navigation"] {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+}
+
+header.wit-site-header nav.wit-nav-links a,
+header.wit-site-header nav[aria-label="Primary navigation"] a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 10px !important;
+  border: 0 !important;
+  color: var(--wit-nav-muted) !important;
+  background: transparent !important;
+  font: 700 10px/1 "Public Sans", sans-serif !important;
+  letter-spacing: .095em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .18s ease, background-color .18s ease;
+}
+
+header.wit-site-header nav.wit-nav-links a::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a::after {
+  position: absolute;
+  right: 10px;
+  bottom: 1px;
+  left: 10px;
+  height: 2px;
+  background: transparent;
+  content: "";
+  transition: background-color .18s ease;
+}
+
+header.wit-site-header nav.wit-nav-links a:hover,
+header.wit-site-header nav.wit-nav-links a:focus-visible,
+header.wit-site-header nav[aria-label="Primary navigation"] a:hover,
+header.wit-site-header nav[aria-label="Primary navigation"] a:focus-visible {
+  color: var(--wit-nav-blue) !important;
+  outline: none;
+}
+
+header.wit-site-header nav.wit-nav-links a:hover::after,
+header.wit-site-header nav.wit-nav-links a:focus-visible::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a:hover::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a:focus-visible::after {
+  background: var(--wit-nav-cyan);
+}
+
+header.wit-site-header nav.wit-nav-links a[aria-current="page"],
+header.wit-site-header nav[aria-label="Primary navigation"] a[aria-current="page"],
+header.wit-site-header nav.wit-nav-links a.text-primary,
+header.wit-site-header nav[aria-label="Primary navigation"] a.text-primary {
+  color: var(--wit-nav-ink) !important;
+}
+
+header.wit-site-header nav.wit-nav-links a[aria-current="page"]::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a[aria-current="page"]::after,
+header.wit-site-header nav.wit-nav-links a.text-primary::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a.text-primary::after {
+  background: var(--wit-nav-cyan);
+}
+
+header.wit-site-header nav.wit-nav-links a.wit-nav-admin-link,
+header.wit-site-header nav[aria-label="Primary navigation"] a.wit-nav-admin-link {
+  margin-left: 6px;
+  padding-right: 13px !important;
+  padding-left: 13px !important;
+  border: 1px solid var(--wit-nav-ink) !important;
+  background: var(--wit-nav-ink) !important;
+  color: #fff !important;
+}
+
+header.wit-site-header nav.wit-nav-links a.wit-nav-admin-link::after,
+header.wit-site-header nav[aria-label="Primary navigation"] a.wit-nav-admin-link::after {
+  display: none;
+}
+
+header.wit-site-header nav.wit-nav-links a.wit-nav-admin-link:hover,
+header.wit-site-header nav.wit-nav-links a.wit-nav-admin-link:focus-visible,
+header.wit-site-header nav[aria-label="Primary navigation"] a.wit-nav-admin-link:hover,
+header.wit-site-header nav[aria-label="Primary navigation"] a.wit-nav-admin-link:focus-visible {
+  border-color: var(--wit-nav-blue) !important;
+  background: var(--wit-nav-blue) !important;
+  color: #fff !important;
+}
+
+header.wit-site-header .wit-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 14px;
+}
+
+header.wit-site-header .wit-nav-icon,
+header.wit-site-header .wit-nav-tools > .material-symbols-outlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--wit-nav-muted) !important;
+  cursor: pointer;
+  transition: color .18s ease, background-color .18s ease;
+}
+
+header.wit-site-header .wit-nav-icon:hover,
+header.wit-site-header .wit-nav-tools > .material-symbols-outlined:hover {
+  color: var(--wit-nav-blue) !important;
+  background: var(--wit-nav-cyan-soft);
+}
+
+header.wit-site-header .wit-nav-accessibility {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 9px;
+  color: var(--wit-nav-muted) !important;
+  font: 700 10px/1 "Public Sans", sans-serif !important;
+  letter-spacing: .06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header.wit-site-header .wit-nav-accessibility:hover,
+header.wit-site-header .wit-nav-accessibility:focus-visible {
+  color: var(--wit-nav-blue) !important;
+  outline: 2px solid rgba(21, 156, 168, .28);
+  outline-offset: 2px;
+}
+
+header.wit-site-header .wit-nav-mobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--wit-nav-line);
+  background: #fff;
+  color: var(--wit-nav-ink);
+  cursor: pointer;
+}
+
+header.wit-site-header .wit-nav-mobile:hover,
+header.wit-site-header .wit-nav-mobile:focus-visible {
+  border-color: var(--wit-nav-cyan);
+  outline: none;
+}
+
+.wit-nav-mobile-panel {
+  display: none;
+}
+
+/* The operations console keeps its account controls, but shares the same brand. */
+header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] a,
+header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] button {
+  color: var(--wit-nav-muted) !important;
+  font: 700 10px/1 "Public Sans", sans-serif !important;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] a:hover,
+header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] button:hover {
+  color: var(--wit-nav-blue) !important;
+}
+
+@media (max-width: 1120px) {
+  header.wit-site-header nav.wit-nav-links a,
+  header.wit-site-header nav[aria-label="Primary navigation"] a {
+    padding-right: 7px !important;
+    padding-left: 7px !important;
+    letter-spacing: .065em;
+  }
+
+  .wit-nav-brand-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 860px) {
+  header.wit-site-header > div {
+    width: min(100% - 32px, 720px) !important;
+  }
+
+  header.wit-site-header > div > div {
+    min-height: 64px;
+  }
+
+  header.wit-site-header nav.wit-nav-links,
+  header.wit-site-header nav[aria-label="Primary navigation"] {
+    display: none;
+  }
+
+  header.wit-site-header .wit-nav-tools {
+    margin-left: auto;
+  }
+
+  header.wit-site-header .wit-nav-mobile {
+    display: inline-flex;
+  }
+
+  header.wit-site-header .wit-nav-accessibility {
+    display: none;
+  }
+
+  header.wit-site-header .wit-nav-mobile-panel.is-open {
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    left: 16px;
+    display: grid;
+    gap: 2px;
+    padding: 8px;
+    border: 1px solid var(--wit-nav-line);
+    background: #fff;
+    box-shadow: 0 14px 30px rgba(8, 42, 73, .14);
+  }
+
+  header.wit-site-header .wit-nav-mobile-link {
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 12px;
+    color: var(--wit-nav-muted);
+    font: 700 11px/1 "Public Sans", sans-serif;
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  header.wit-site-header .wit-nav-mobile-link:hover,
+  header.wit-site-header .wit-nav-mobile-link:focus-visible {
+    background: var(--wit-nav-cyan-soft);
+    color: var(--wit-nav-blue);
+    outline: none;
+  }
+
+  header.wit-site-header .wit-nav-mobile-link.wit-nav-admin-link {
+    margin-top: 4px;
+    background: var(--wit-nav-ink);
+    color: #fff;
+  }
+
+  .wit-nav-brand-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 430px) {
+  header.wit-site-header > div {
+    width: calc(100% - 24px) !important;
+  }
+
+  .wit-nav-rule {
+    width: 14px;
+    flex-basis: 14px;
+  }
+
+  .wit-nav-brand-text {
+    font-size: 12px;
+    letter-spacing: .025em;
+  }
+}

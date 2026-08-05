@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
   <link href="../shared/wit-history.css?v=20260805" rel="stylesheet"/>
+  <link href="../shared/wit-nav.css?v=20260805-v1" rel="stylesheet"/>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -38,12 +39,12 @@
 </head>
 <body class="wit-history-page min-h-screen flex flex-col antialiased">
   <style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
-  <header class="bg-surface border-b border-outline-variant w-full fixed top-0 z-50">
+  <header class="wit-site-header bg-surface border-b border-outline-variant w-full fixed top-0 z-50">
     <div class="flex flex-col w-full px-4 md:px-8 max-w-[1440px] mx-auto py-4">
       <div class="flex justify-between items-center w-full">
-        <div class="font-headline-sm text-xl font-bold text-primary tracking-tight">WIT RESEARCH &amp; ANALYSIS</div>
+        <a class="wit-nav-brand" href="../home_wit_research_analysis/code.html" aria-label="WIT Research and Analysis home"><span class="wit-nav-mark" aria-hidden="true">WIT</span><span class="wit-nav-rule" aria-hidden="true"></span><span class="wit-nav-brand-text">Research &amp; Analysis</span></a>
         <div class="hidden md:flex items-center space-x-5">
-          <nav class="flex items-center space-x-2" aria-label="Primary navigation">
+          <nav class="wit-nav-links flex items-center space-x-2" aria-label="Primary navigation">
             <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../home_wit_research_analysis/code.html">Home</a>
             <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../about_wit_research_analysis/code.html">About</a>
             <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../detection_wit_research_analysis/code.html">Detection</a>
@@ -53,7 +54,7 @@
           </nav>
         </div>
         <div class="md:hidden flex items-center">
-          <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">history</span>
+          <button class="wit-nav-mobile" type="button" aria-label="Open navigation"><span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">menu</span></button>
         </div>
       </div>
     </div>
@@ -203,6 +204,7 @@
   <script src="../shared/vendor/jspdf.umd.min.js"></script>
   <script src="../shared/wit-chat.js?v=20260805-v4"></script>
   <script src="../shared/wit-history.js?v=20260805-v2"></script>
+  <script src="../shared/wit-nav.js?v=20260805-v1"></script>
   <script>requestAnimationFrame(() => { document.body.style.opacity = 1; document.body.style.transform = 'none'; });</script>
 </body>
 </html>
