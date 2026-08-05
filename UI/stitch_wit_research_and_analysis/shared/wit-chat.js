@@ -225,6 +225,22 @@
   ];
   let isSending = false;
 
+  async function requestChat(url, options = {}) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 15000);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
+  function chatFailureMessage(error) {
+    if (error?.name === "AbortError") return "The assistant took too long to respond. Please try again.";
+    if (error instanceof TypeError) return "The assistant could not reach the API. Check the service connection and try again.";
+    return error?.message || "The assistant could not complete that request. Please try again.";
+  }
+
   function appendMessage(role, text) {
     const item = document.createElement("div");
     item.className = role === "user"
@@ -263,7 +279,7 @@
     appendMessage("assistant", pending);
     const pendingNode = messageBox.lastElementChild;
     try {
-      const response = await fetch(`${API_BASE}/chat`, {
+      const response = await requestChat(`${API_BASE}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages }),
@@ -288,7 +304,7 @@
         pendingNode.appendChild(link);
       }
     } catch (error) {
-      pendingNode.textContent = "Assistant unavailable. Please start the backend and try again.";
+      pendingNode.textContent = chatFailureMessage(error);
       console.error("WIT chat request failed", error);
     } finally {
       isSending = false;

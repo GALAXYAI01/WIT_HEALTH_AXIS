@@ -470,7 +470,7 @@ def update_admin_settings(
 @app.post("/chat")
 def chat(req: ChatRequest, request: Request):
     if not GEMINI_API_KEY or gemini_client is None:
-        return {"reply": "Chatbot isn't configured yet - add GEMINI_API_KEY to .env and restart the backend.", "navigate": None}
+        return {"reply": "The assistant service is online, but AI responses are not configured yet. Please add GEMINI_API_KEY to the deployment environment and restart the service.", "navigate": None}
     contents = [
         {"role": ("model" if m.role == "assistant" else "user"), "parts": [{"text": m.content}]}
         for m in req.messages[-20:]
@@ -491,7 +491,7 @@ def chat(req: ChatRequest, request: Request):
     except Exception:
         LOGGER.exception("chat provider request failed")
         record_audit(request, "chat_provider_failed", "assistant")
-        return {"reply": "The assistant is temporarily unavailable. Please try again shortly.", "navigate": None}
+        return {"reply": "The assistant service is online, but its AI provider did not respond. Please check the Gemini API configuration or quota and try again.", "navigate": None}
     reply_text = response.text or ""
     navigate_page = None
     if response.function_calls:
