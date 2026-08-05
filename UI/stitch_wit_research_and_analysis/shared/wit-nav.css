@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap");
+
 :root {
   --wit-nav-ink: #082a49;
   --wit-nav-blue: #0d5f91;
@@ -37,7 +39,7 @@ header.wit-site-header > div > div {
 .wit-nav-brand {
   display: inline-flex !important;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   flex: 0 0 auto;
   min-height: 32px;
   color: var(--wit-nav-ink) !important;
@@ -53,26 +55,28 @@ header.wit-site-header > div > div {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
   background: var(--wit-nav-ink);
   color: #fff;
-  font: 700 10px/1 "Public Sans", sans-serif;
-  letter-spacing: .02em;
+  box-shadow: 0 3px 8px rgba(8, 42, 73, .14);
+  font: 800 10px/1 "Manrope", "Public Sans", sans-serif;
+  letter-spacing: .08em;
 }
 
 .wit-nav-rule {
-  width: 22px;
+  width: 28px;
   height: 2px;
-  flex: 0 0 22px;
+  flex: 0 0 28px;
   background: var(--wit-nav-cyan);
 }
 
 .wit-nav-brand-text {
   color: var(--wit-nav-blue);
-  font: 700 15px/1 "Public Sans", sans-serif;
-  letter-spacing: .045em;
+  font: 800 14px/1 "Manrope", "Public Sans", sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 header.wit-site-header nav.wit-nav-links,
@@ -260,7 +264,8 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
   }
 
   .wit-nav-brand-text {
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: .09em;
   }
 }
 
@@ -329,7 +334,8 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
   }
 
   .wit-nav-brand-text {
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: .06em;
   }
 }
 
@@ -345,6 +351,6 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
 
   .wit-nav-brand-text {
     font-size: 12px;
-    letter-spacing: .025em;
+    letter-spacing: .04em;
   }
 }
