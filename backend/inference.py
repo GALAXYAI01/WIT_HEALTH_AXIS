@@ -2,19 +2,16 @@ import base64
 import io
 import os
 
-import cv2
-import numpy as np
-import torch
-from PIL import Image
-
 from src.config import MODULES
-from src.data.transforms import get_val_transforms
-from src.models.architecture import build_model
-from src.models.gradcam import generate_gradcam
 
 
 class DiseaseDetector:
     def __init__(self, module_config, weights_path, device="cpu"):
+        import torch
+
+        from src.data.transforms import get_val_transforms
+        from src.models.architecture import build_model
+
         self.config = module_config
         self.device = torch.device(device)
         self.model = build_model(module_config.backbone, module_config.num_classes, pretrained=False)
@@ -25,6 +22,13 @@ class DiseaseDetector:
         self.transform = get_val_transforms(module_config.img_size)
 
     def predict(self, image_bytes):
+        import cv2
+        import numpy as np
+        import torch
+        from PIL import Image
+
+        from src.models.gradcam import generate_gradcam
+
         image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         rgb_image = np.array(image)
         resized = cv2.resize(rgb_image, (self.config.img_size, self.config.img_size))
