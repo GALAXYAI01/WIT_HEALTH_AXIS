@@ -271,12 +271,21 @@
 
       fetch(API_BASE + '/predict/' + config.module, { method: 'POST', body: formData, credentials: 'include' })
         .then(function(response) {
-          if (!response.ok) {
-            return response.json().then(function(errBody) {
-              throw new Error(errBody.detail || ('Request failed with status ' + response.status));
-            });
-          }
-          return response.json();
+          return response.text().then(function(raw) {
+            var body = {};
+            try {
+              body = raw ? JSON.parse(raw) : {};
+            } catch (parseError) {
+              throw new Error('The analysis service returned an invalid response. Please try again.');
+            }
+            if (!response.ok) {
+              throw new Error(body.detail || ('Request failed with status ' + response.status));
+            }
+            if (!raw) {
+              throw new Error('The analysis service returned an empty response. Please try again.');
+            }
+            return body;
+          });
         })
         .then(function(data) {
           renderResults(data);

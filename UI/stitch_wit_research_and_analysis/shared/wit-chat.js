@@ -268,8 +268,15 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages }),
       });
-      if (!response.ok) throw new Error(`Chat request failed with HTTP ${response.status}`);
-      const data = await response.json();
+      const raw = await response.text();
+      let data = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch (parseError) {
+        throw new Error("The assistant returned an invalid response. Please try again.");
+      }
+      if (!response.ok) throw new Error(data.detail || `Chat request failed with HTTP ${response.status}`);
+      if (!raw) throw new Error("The assistant returned an empty response. Please try again.");
       pendingNode.textContent = data.reply || "I couldn't produce a response.";
       if (data.reply) messages.push({ role: "assistant", content: data.reply });
       if (data.navigate && PAGE_URLS[data.navigate]) {

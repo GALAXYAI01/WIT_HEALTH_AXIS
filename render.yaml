@@ -17,7 +17,7 @@ services:
       - key: WIT_ENABLE_HSTS
         value: "true"
       - key: WIT_REQUIRE_AUTH
-        value: "true"
+        value: "false"
       - key: WIT_ALLOWED_ORIGINS
         value: ""
       - key: WIT_HISTORY_DB_PATH

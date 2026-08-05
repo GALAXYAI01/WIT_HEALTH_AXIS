@@ -76,7 +76,7 @@ Important settings include:
 | `WIT_JWT_SECRET` | Stable high-entropy secret for access tokens. |
 | `WIT_ALLOWED_ORIGINS` | Comma-separated frontend origins allowed by CORS. |
 | `WIT_COOKIE_SECURE` | Set `true` when the application is served over HTTPS. |
-| `WIT_REQUIRE_AUTH` | Enables authentication before image analysis by default. |
+| `WIT_REQUIRE_AUTH` | Optional prediction gate; Render keeps public research analysis open while admin routes remain protected. |
 | `WIT_FIELD_ENCRYPTION_KEY` | Optional Fernet key for sensitive patient fields. |
 | `WIT_HISTORY_DB_PATH` | Optional path for the SQLite history database. |
 | `WIT_ADMIN_EMAIL` / `WIT_ADMIN_PASSWORD` | Optional first-admin bootstrap values. |
