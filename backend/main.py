@@ -306,12 +306,14 @@ def history_report(scan_id: str, request: Request):
 
 
 @app.post("/auth/register", response_model=AuthUser, status_code=201)
-def register(payload: AuthRegisterRequest, request: Request):
+def register(payload: AuthRegisterRequest, request: Request, response: Response):
     first_account = user_count() == 0
     if not first_account and not _truthy(os.environ.get("WIT_ALLOW_REGISTRATION")):
         raise HTTPException(status_code=403, detail="self-registration is disabled")
     role = "admin" if first_account else "viewer"
     user = create_user(payload.email, payload.password, role)
+    access, refresh, csrf = issue_session(user, request)
+    _set_session_cookies(response, access, refresh, csrf)
     record_audit(request, "account_created", "user", str(user["id"]), {"role": role}, int(user["id"]))
     return user
 

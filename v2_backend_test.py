@@ -22,6 +22,8 @@ with TestClient(main.app) as client:
     registered = client.post("/auth/register", json={"email": "admin@example.test", "password": "a-secure-test-password"})
     assert registered.status_code == 201, registered.text
     assert registered.json()["role"] == "admin"
+    assert client.get("/auth/me").status_code == 200
+    assert client.get("/auth/me").json()["role"] == "admin"
 
     login = client.post("/auth/login", json={"email": "admin@example.test", "password": "a-secure-test-password"})
     assert login.status_code == 200, login.text
