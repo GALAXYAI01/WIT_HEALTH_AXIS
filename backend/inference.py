@@ -58,9 +58,11 @@ class DiseaseDetector:
         }
 
 
-def load_available_detectors(device="cpu"):
+def load_available_detectors(device="cpu", names=None):
     detectors = {}
     for name, config in MODULES.items():
+        if names is not None and name not in names:
+            continue
         if os.path.exists(config.weights_path):
             detectors[name] = DiseaseDetector(config, config.weights_path, device)
     return detectors

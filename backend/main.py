@@ -1,5 +1,7 @@
+import gc
 import os
 import logging
+from threading import Lock
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Any, List, Literal
@@ -110,15 +112,30 @@ class ChatRequest(BaseModel):
     messages: list[ChatMessage] = Field(min_length=1, max_length=20)
 
 detectors = {}
+detector_lock = Lock()
+
+
+def available_module_names() -> list[str]:
+    return [name for name, config in MODULES.items() if os.path.exists(config.weights_path)]
+
+
+def get_detector(module: str):
+    detector = detectors.get(module)
+    if detector is not None:
+        return detector
+    detectors.clear()
+    gc.collect()
+    detectors.update(load_available_detectors(names={module}))
+    return detectors.get(module)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     init_auth_db()
-    detectors.update(load_available_detectors())
     yield
     detectors.clear()
+    gc.collect()
 
 
 app = FastAPI(title="Disease Detection Framework API", lifespan=lifespan)
@@ -212,13 +229,13 @@ app.add_middleware(
 
 @app.get("/health", response_model=HealthResponse)
 def health():
-    return {"status": "ok", "available_modules": list(detectors.keys())}
+    return {"status": "ok", "available_modules": available_module_names()}
 
 
 @app.get("/modules", response_model=List[ModuleInfo])
 def list_modules():
     return [
-        {"name": name, "class_names": config.class_names, "available": name in detectors}
+        {"name": name, "class_names": config.class_names, "available": name in available_module_names()}
         for name, config in MODULES.items()
     ]
 
@@ -402,7 +419,7 @@ def admin_system_health(_: dict[str, Any] = Depends(require_roles("admin"))):
     return {
         "status": "ok",
         "backend": "online",
-        "available_modules": list(detectors.keys()),
+        "available_modules": available_module_names(),
         "database": {"path_configured": True, "exists": db_path.exists()},
         "security": {
             "cors_configured": bool(_allowed_origins()),
@@ -492,7 +509,6 @@ async def predict(
     configured_require_auth = get_setting("require_auth_for_predictions", "true" if _truthy(os.environ.get("WIT_REQUIRE_AUTH")) else "false") == "true"
     if configured_require_auth and not user:
         raise HTTPException(status_code=401, detail="authentication required for analysis")
-    detector = detectors.get(module)
     model_version = f"{MODULES[module].backbone}-{MODULES[module].img_size}"
     scan_id = create_scan(
         module, file.filename or "", model_version,
@@ -501,14 +517,16 @@ async def predict(
         patient_sample_id=patient_sample_id, patient_date=patient_date,
     )
     try:
-        if detector is None:
-            raise HTTPException(status_code=503, detail=f"model for '{module}' is not trained/loaded yet")
         if not file.content_type or not file.content_type.startswith("image/"):
             raise HTTPException(status_code=400, detail="file must be an image")
 
         image_bytes = await file.read()
         thumbnail = make_thumbnail_data_url(image_bytes)
-        result = detector.predict(image_bytes)
+        with detector_lock:
+            detector = get_detector(module)
+            if detector is None:
+                raise HTTPException(status_code=503, detail=f"model for '{module}' is not trained/loaded yet")
+            result = detector.predict(image_bytes)
         update_scan(
             scan_id,
             status="Completed",

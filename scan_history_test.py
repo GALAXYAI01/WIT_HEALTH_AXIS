@@ -57,10 +57,15 @@ assert api_history.json()["total"] == 2
 assert api_history.json()["items"][0]["status"] == "Completed"
 
 main.detectors.clear()
-failed_prediction = client.post(
-    "/predict/malaria",
-    files={"file": ("missing.png", b"fake image", "image/png")},
-)
+original_loader = main.load_available_detectors
+main.load_available_detectors = lambda names=None: {}
+try:
+    failed_prediction = client.post(
+        "/predict/malaria",
+        files={"file": ("missing.png", b"fake image", "image/png")},
+    )
+finally:
+    main.load_available_detectors = original_loader
 assert failed_prediction.status_code == 503
 failed_api_history = client.get("/history", params={"status": "Failed"})
 assert failed_api_history.status_code == 200
