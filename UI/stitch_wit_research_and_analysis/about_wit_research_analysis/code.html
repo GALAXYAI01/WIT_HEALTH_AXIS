@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WIT RESEARCH &amp; ANALYSIS - About</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../shared/wit-info.css" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        primary: "#002444", "primary-container": "#1b3a5c", "on-primary": "#ffffff",
+        surface: "#f7f9ff", background: "#f7f9ff", "on-background": "#181c20",
+        "on-surface": "#181c20", "on-surface-variant": "#43474e",
+        "surface-container-lowest": "#ffffff", "surface-container-low": "#f1f4f9",
+        "surface-container-highest": "#e0e3e8", "outline-variant": "#c3c6cf",
+        secondary: "#3f6181", "secondary-fixed": "#cee5ff", "surface-variant": "#e0e3e8"
+      },
+      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+      spacing: { "margin-mobile": "16px", "container-max": "1440px", "margin-desktop": "32px", "panel-padding": "20px" },
+      fontFamily: {
+        "data-display": ["JetBrains Mono"], "headline-lg": ["Playfair Display"],
+        "label-caps": ["Public Sans"], "headline-lg-mobile": ["Playfair Display"],
+        "body-sm": ["Public Sans"], "headline-sm": ["Playfair Display"],
+        "headline-md": ["Playfair Display"], "body-lg": ["Public Sans"], "body-md": ["Public Sans"]
+      },
+      fontSize: {
+        "data-display": ["14px", { lineHeight: "20px" }], "headline-lg": ["32px", { lineHeight: "40px" }],
+        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+        "headline-lg-mobile": ["24px", { lineHeight: "32px" }], "body-sm": ["12px", { lineHeight: "16px" }],
+        "headline-sm": ["18px", { lineHeight: "24px" }], "headline-md": ["24px", { lineHeight: "32px" }],
+        "body-lg": ["16px", { lineHeight: "24px" }], "body-md": ["14px", { lineHeight: "20px" }]
+      }
+    }}
+  }
+</script>
+</head>
+<body class="wit-info-page bg-background text-on-background min-h-screen flex flex-col antialiased">
+<style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+<a class="wit-skip-link" href="#main-content">Skip to content</a>
+<header class="bg-surface border-b border-outline-variant w-full fixed top-0 z-50">
+  <div class="flex flex-col w-full px-margin-desktop max-w-container-max mx-auto py-4">
+    <div class="flex justify-between items-center w-full">
+      <div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">WIT RESEARCH &amp; ANALYSIS</div>
+      <div class="hidden md:flex items-center space-x-6">
+        <nav class="flex space-x-6" aria-label="Primary navigation">
+          <a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1" href="../home_wit_research_analysis/code.html">Home</a>
+          <a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="code.html" aria-current="page">About</a>
+          <a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1" href="../detection_wit_research_analysis/code.html">Detection</a>
+          <a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+          <a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-container-low transition-colors px-2 py-1" href="../contact_wit_research_analysis/code.html">Contact</a>
+        </nav>
+        <div class="flex items-center space-x-4"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">search</span><a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="#">Accessibility</a></div>
+      </div>
+      <div class="md:hidden flex items-center"><span class="material-symbols-outlined text-primary text-2xl" aria-label="Open navigation">menu</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" class="wit-info-main">
+  <section class="wit-info-hero" aria-labelledby="about-title">
+    <div class="wit-info-copy">
+      <span class="wit-info-kicker">Institutional profile / WIT Solapur</span>
+      <h1 id="about-title" class="wit-info-title">Research you can inspect.</h1>
+      <p class="wit-info-lede">WIT Research &amp; Analysis applies deep learning to microscopy while keeping the workflow legible: upload a sample, review the prediction, compare class probabilities, and inspect the image regions that influenced the model.</p>
+      <div class="wit-info-actions">
+        <a class="wit-info-button" href="../detection_wit_research_analysis/code.html">Explore detection <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+        <a class="wit-info-button wit-info-button--quiet" href="../contact_wit_research_analysis/code.html">Contact WIT</a>
+      </div>
+      <div class="wit-info-stat-row" aria-label="Platform overview">
+        <div><span class="wit-info-stat-label">Modules</span><span class="wit-info-stat-value">03 pathways</span></div>
+        <div><span class="wit-info-stat-label">Explainability</span><span class="wit-info-stat-value">Grad-CAM</span></div>
+        <div><span class="wit-info-stat-label">Setting</span><span class="wit-info-stat-value">Research / WIT</span></div>
+      </div>
+    </div>
+    <div class="wit-info-media">
+      <img src="../home_wit_research_analysis/assets/hero-malaria.jpg" alt="Microscopy image used in the malaria research pathway"/>
+      <div class="wit-info-media-label"><span class="material-symbols-outlined" aria-hidden="true">biotech</span>Microscopy pathway / model input</div>
+      <p class="wit-info-media-meta">Actual research imagery from the platform's screening workflows.</p>
+      <div class="wit-info-media-strip" aria-label="Three microscopy pathways">
+        <img src="../home_wit_research_analysis/assets/hero-malaria.jpg" alt="Malaria microscopy pathway"/>
+        <img src="../home_wit_research_analysis/assets/hero-leukemia.jpg" alt="Leukemia microscopy pathway"/>
+        <img src="../home_wit_research_analysis/assets/hero-histopathology.jpg" alt="Histopathology microscopy pathway"/>
+      </div>
+    </div>
+  </section>
+
+  <section class="wit-info-section" aria-labelledby="pathways-title">
+    <div class="wit-info-section-header"><div><span class="wit-info-section-index">01 / CONDITIONS COVERED</span><h2 id="pathways-title" class="wit-info-section-title">Three microscopy pathways</h2></div></div>
+    <p class="wit-info-section-intro">Each module is trained for a distinct image type and presents its output with the same inspectable result pattern: summary, probabilities, and Grad-CAM.</p>
+    <div class="wit-info-card-grid">
+      <article class="wit-info-card">
+        <div class="wit-info-card-icon"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span></div>
+        <span class="wit-info-card-kicker">Blood smear / 02 classes</span>
+        <h3 class="wit-info-card-title">Malaria</h3>
+        <p class="wit-info-card-text">Screens Giemsa-stained thin blood smears for Plasmodium falciparum presence, with Parasitized and Uninfected classes.</p>
+        <a class="wit-info-card-link" href="../malaria_detection_wit_research_analysis/code.html">Open module <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      </article>
+      <article class="wit-info-card">
+        <div class="wit-info-card-icon"><span class="material-symbols-outlined" aria-hidden="true">bloodtype</span></div>
+        <span class="wit-info-card-kicker">Blood smear / 04 classes</span>
+        <h3 class="wit-info-card-title">Leukemia</h3>
+        <p class="wit-info-card-text">Classifies peripheral blood smear imagery across Benign, Early, Pre, and Pro categories in the ALL research dataset.</p>
+        <a class="wit-info-card-link" href="../leukemia_detection_wit_research_analysis/code.html">Open module <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      </article>
+      <article class="wit-info-card">
+        <div class="wit-info-card-icon"><span class="material-symbols-outlined" aria-hidden="true">biotech</span></div>
+        <span class="wit-info-card-kicker">Tissue patch / 02 classes</span>
+        <h3 class="wit-info-card-title">Histopathology</h3>
+        <p class="wit-info-card-text">Reviews tissue-slide patches for Benign or Malignant patterns while showing the regions most associated with the output.</p>
+        <a class="wit-info-card-link" href="../histopathology_detection_wit_research_analysis/code.html">Open module <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="wit-info-section" aria-labelledby="workflow-title">
+    <div class="wit-info-section-header"><div><span class="wit-info-section-index">02 / PLATFORM METHOD</span><h2 id="workflow-title" class="wit-info-section-title">A result with context.</h2></div></div>
+    <div class="wit-info-step-grid">
+      <div class="wit-info-step"><span class="wit-info-step-number">01</span><h3 class="wit-info-step-title">Upload a research image</h3><p class="wit-info-step-text">Choose a supported microscopy image and add optional patient or sample details for the local report.</p></div>
+      <div class="wit-info-step"><span class="wit-info-step-number">02</span><h3 class="wit-info-step-title">Review model output</h3><p class="wit-info-step-text">Read the predicted class and confidence, then compare the probability assigned to every available class.</p></div>
+      <div class="wit-info-step"><span class="wit-info-step-number">03</span><h3 class="wit-info-step-title">Inspect the heatmap</h3><p class="wit-info-step-text">Use Grad-CAM to see which image regions most influenced the model's research output.</p></div>
+    </div>
+    <div class="wit-info-note"><span class="material-symbols-outlined" aria-hidden="true">warning</span><div><h3 class="wit-info-note-title">Research use only</h3><p class="wit-info-note-text">This is an educational research prototype, not a validated clinical diagnostic tool. Results must not replace evaluation by a qualified medical professional.</p></div></div>
+  </section>
+
+  <section class="wit-info-section" aria-labelledby="institution-title">
+    <div class="wit-info-split">
+      <div class="wit-info-panel wit-info-panel--ink"><span class="wit-info-kicker" style="color:#a8e2e5">Institution</span><h2 id="institution-title" class="wit-info-panel-title">Walchand Institute of Technology</h2><p class="wit-info-panel-text">WIT Research &amp; Analysis is developed at Walchand Institute of Technology (WIT), Solapur, established in 1983 and named after industrialist Seth Walchand Hirachand. WIT is the oldest engineering college in Solapur and its first autonomous institute, accredited NAAC A+ and affiliated with Punyashlok Ahilyadevi Holkar Solapur University.</p></div>
+      <div class="wit-info-panel"><h2 class="wit-info-panel-title">An academic starting point</h2><p class="wit-info-panel-text">The platform is designed to support learning, experimentation, and transparent discussion around medical image analysis. It makes the model output easier to examine without presenting it as a clinical decision.</p><ul class="wit-info-list"><li><span class="material-symbols-outlined" aria-hidden="true">school</span><span>Built for students, faculty, and research conversations.</span></li><li><span class="material-symbols-outlined" aria-hidden="true">visibility</span><span>Every result is paired with inspectable visual context.</span></li></ul></div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-surface-container-highest border-t border-outline-variant mt-auto w-full">
+  <div class="w-full py-panel-padding px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-4">
+    <div class="font-headline-sm text-headline-sm text-on-surface">WIT RESEARCH LAB</div>
+    <div class="text-center md:text-left font-body-sm text-body-sm text-on-surface-variant max-w-md">&copy; <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics.<br/><span class="wit-footer-version">Research platform v2.0</span></div>
+    <nav class="flex flex-wrap justify-center gap-4" aria-label="Footer navigation">
+      <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+      <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+      <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#institutional-guidelines">Institutional Guidelines</a>
+      <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#ethics">Ethics Statement</a>
+      <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../contact_wit_research_analysis/code.html">Contact</a>
+    </nav>
+  </div>
+</footer>
+<script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+<script src="../shared/wit-chat.js?v=20260805-v4"></script>
+<script src="../shared/wit-search.js"></script>
+<script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
+</body>
+</html>

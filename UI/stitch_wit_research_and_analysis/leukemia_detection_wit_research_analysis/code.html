@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leukemia Detection | WIT RESEARCH &amp; ANALYSIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Libre+Caslon+Text:wght@400;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001d33", "inverse-surface": "#2d3135", "inverse-primary": "#abc9f2",
+                        "error-container": "#ffdad6", "on-background": "#181c20", "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#3e6080", "on-tertiary-fixed-variant": "#842131", "on-error-container": "#93000a",
+                        "surface-tint": "#436084", "on-surface": "#181c20", "secondary-fixed-dim": "#a7caee",
+                        "secondary-fixed": "#cee5ff", "on-tertiary-container": "#fa7b86", "tertiary": "#4f0012",
+                        "on-primary-container": "#87a4cc", "secondary-container": "#b8dbff", "tertiary-fixed-dim": "#ffb2b6",
+                        "on-error": "#ffffff", "on-secondary": "#ffffff", "surface": "#f7f9ff", "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#264968", "on-primary-fixed": "#001c38", "surface-variant": "#e0e3e8",
+                        "on-primary": "#ffffff", "secondary": "#3f6181", "on-surface-variant": "#43474e",
+                        "surface-container-high": "#e5e8ed", "primary-fixed-dim": "#abc9f2", "on-primary-fixed-variant": "#2b486b",
+                        "primary-container": "#1b3a5c", "primary": "#002444", "inverse-on-surface": "#eef1f6",
+                        "surface-bright": "#f7f9ff", "tertiary-fixed": "#ffdadb", "background": "#f7f9ff",
+                        "surface-container-highest": "#e0e3e8", "on-tertiary-fixed": "#40000d", "outline": "#73777f",
+                        "surface-dim": "#d7dadf", "primary-fixed": "#d2e4ff", "tertiary-container": "#711124",
+                        "outline-variant": "#c3c6cf", "on-tertiary": "#ffffff", "surface-container": "#ebeef3",
+                        "surface-container-low": "#f1f4f9"
+                    },
+                    "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    "spacing": { "unit": "4px", "margin-mobile": "16px", "container-max": "1440px", "margin-desktop": "32px", "gutter": "16px", "panel-padding": "20px" },
+                    "fontFamily": {
+                        "data-display": ["JetBrains Mono"], "body-sm": ["Public Sans"], "headline-md": ["Libre Caslon Text"],
+                        "label-caps": ["Public Sans"], "headline-lg": ["Libre Caslon Text"], "body-lg": ["Public Sans"],
+                        "body-md": ["Public Sans"], "headline-sm": ["Libre Caslon Text"], "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "data-display": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f4f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6cf; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #73777f; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary selection:text-on-primary">
+<style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+<header class="bg-surface dark:bg-on-background docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows flex flex-col w-full px-margin-desktop max-w-container-max mx-auto z-50">
+<div class="flex items-center justify-between h-16 w-full">
+<div class="flex items-center gap-6">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">WIT RESEARCH &amp; ANALYSIS</span>
+<nav class="hidden md:flex items-center gap-1 mt-1">
+<a class="px-3 py-2 font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 rounded uppercase" href="../home_wit_research_analysis/code.html">Home</a>
+<a class="px-3 py-2 font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 rounded uppercase" href="../about_wit_research_analysis/code.html">About</a>
+<a class="px-3 py-2 font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 rounded uppercase" href="../detection_wit_research_analysis/code.html">Detection</a>
+<a class="px-3 py-2 font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 rounded uppercase" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+<a class="px-3 py-2 font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 rounded uppercase" href="../contact_wit_research_analysis/code.html">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="h-9 pl-10 pr-4 bg-surface-container-low border border-outline-variant focus:border-secondary focus:ring-0 rounded font-body-sm text-body-sm text-on-surface placeholder:text-outline w-64 transition-colors" placeholder="Search parameters..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-3 py-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded uppercase">
+<span class="material-symbols-outlined text-[18px]">accessibility_new</span>
+<span class="hidden lg:inline">Accessibility</span>
+</button>
+<button class="md:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 flex flex-col gap-gutter">
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded p-panel-padding flex flex-col gap-4">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div class="flex flex-col gap-2 max-w-3xl">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Leukemia Classification</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Deep learning model configured for the morphological differentiation of leukemic cells in peripheral blood smears. The system evaluates cellular features against four distinct classifications, prioritizing the identification of early to advanced malignant transformations to expedite institutional diagnostic protocols.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-2 md:justify-end items-start mt-1">
+<div class="flex items-center px-2 py-1 bg-surface-container-high rounded-DEFAULT border border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Benign</span>
+</div>
+<div class="flex items-center px-2 py-1 bg-tertiary-fixed rounded-DEFAULT border border-tertiary-fixed-dim">
+<span class="font-label-caps text-label-caps text-on-tertiary-fixed-variant uppercase tracking-wider">Early</span>
+</div>
+<div class="flex items-center px-2 py-1 bg-tertiary-fixed rounded-DEFAULT border border-tertiary-fixed-dim">
+<span class="font-label-caps text-label-caps text-on-tertiary-fixed-variant uppercase tracking-wider">Pre</span>
+</div>
+<div class="flex items-center px-2 py-1 bg-tertiary-fixed rounded-DEFAULT border border-tertiary-fixed-dim">
+<span class="font-label-caps text-label-caps text-on-tertiary-fixed-variant uppercase tracking-wider">Pro</span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded overflow-hidden flex flex-col">
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-low hover:bg-surface-container transition-colors border-b border-outline-variant text-left group" onclick="document.getElementById('patient-details-content').classList.toggle('hidden'); document.getElementById('patient-expand-icon').classList.toggle('rotate-180')">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Patient Demographics</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200" id="patient-expand-icon">expand_more</span>
+</button>
+<div class="flex flex-col" id="patient-details-content">
+<div class="grid grid-cols-2 border-b border-outline-variant">
+<div class="p-3 border-r border-outline-variant bg-surface-bright/50">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Patient name</span>
+<input class="w-full font-data-display text-data-display text-on-surface bg-transparent border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-name" placeholder="Optional"/>
+</div>
+<div class="p-3 bg-surface-bright/50">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Age</span>
+<input class="w-full font-data-display text-data-display text-on-surface bg-transparent border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-age" placeholder="Optional"/>
+</div>
+</div>
+<div class="grid grid-cols-2 border-b border-outline-variant">
+<div class="p-3 border-r border-outline-variant">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Sample ID</span>
+<input class="w-full font-data-display text-data-display text-on-surface bg-transparent border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-sample-id" placeholder="Optional"/>
+</div>
+<div class="p-3">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Blood Type</span>
+<span class="block font-data-display text-data-display text-on-surface">-</span>
+</div>
+</div>
+<div class="grid grid-cols-1 border-b border-outline-variant">
+<div class="p-3 bg-surface-bright/50">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Collection Date</span>
+<input class="w-full font-data-display text-data-display text-on-surface bg-transparent border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-date" type="date"/>
+</div>
+</div>
+<div class="p-3">
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Clinical Notes</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                                Patient presented with prolonged fatigue and low-grade fever. Routine CBC indicated elevated WBC count. Smear requested for morphological review.
+                            </p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-4 flex flex-col items-center justify-center text-center h-32 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[32px] text-outline group-hover:text-primary mb-2 transition-colors">history</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary transition-colors uppercase">View Patient History</span>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-panel-padding flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-4 border-b border-outline-variant pb-2">Diagnostic Input</h2>
+<div class="border-2 border-dashed border-outline-variant rounded-lg bg-surface hover:bg-surface-container-low transition-colors flex flex-col items-center justify-center py-12 px-6 text-center cursor-pointer relative group">
+<input accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="wit-file-input" type="file"/>
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">upload_file</span>
+</div>
+<img class="hidden max-h-32 mb-3 border border-outline-variant relative z-10" id="wit-image-preview"/>
+<span class="font-headline-sm text-headline-sm text-on-surface mb-1">Upload Blood Smear</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-6">Drag and drop high-resolution microscopy image (TIFF, PNG, JPEG)</span>
+<div class="flex items-center gap-4 relative z-10">
+<label id="wit-browse-btn" for="wit-file-input" role="button" tabindex="0" class="bg-secondary-container text-on-secondary-container hover:bg-secondary hover:text-on-secondary rounded px-6 py-2.5 font-label-caps text-label-caps uppercase transition-colors flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+                                Choose File
+                            </label>
+<button class="bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary rounded px-6 py-2.5 font-label-caps text-label-caps uppercase transition-colors flex items-center gap-2" id="wit-analyze-btn" disabled="">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                                Analyze Image
+                            </button>
+</div>
+</div>
+<div class="hidden mt-3 p-3 border border-error text-error font-body-sm text-body-sm" id="wit-error-message"></div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded flex flex-col overflow-hidden">
+<div class="flex border-b border-outline-variant bg-surface-container-low overflow-x-auto custom-scrollbar">
+<button class="px-6 py-3 font-label-caps text-label-caps uppercase whitespace-nowrap border-b-2 border-transparent text-on-surface-variant transition-colors" id="tab-btn-summary" onclick="witSwitchTab('summary')">Summary</button>
+<button class="px-6 py-3 font-label-caps text-label-caps uppercase whitespace-nowrap border-b-2 border-transparent text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" id="tab-btn-probs" onclick="witSwitchTab('probs')">All Probabilities</button>
+<button class="px-6 py-3 font-label-caps text-label-caps uppercase whitespace-nowrap border-b-2 border-transparent text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" id="tab-btn-gradcam" onclick="witSwitchTab('gradcam')">Grad-CAM View</button>
+</div>
+<div class="p-panel-padding relative min-h-[400px]">
+<div class="hidden md:flex flex-col h-full" id="tab-summary">
+<div class="flex flex-col gap-6 h-full max-w-lg">
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Primary Detection</span>
+<div class="flex items-baseline gap-3 mb-4">
+<h3 class="font-headline-lg text-headline-lg text-on-surface" id="wit-predicted-class"></h3>
+<div class="hidden px-2 py-1 rounded-DEFAULT border border-tertiary-fixed-dim inline-flex items-center" id="wit-flag-badge" style="background-color: var(--tertiary-fixed, #ffdadb);">
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-4 mb-6">
+<div class="flex justify-between items-end mb-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Confidence Score</span>
+<span class="font-data-display text-data-display text-tertiary font-bold text-lg" id="wit-confidence"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden md:flex flex-col h-full" id="tab-probs">
+<div class="overflow-x-auto custom-scrollbar border border-outline-variant rounded">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="p-3 border-b border-r border-outline-variant font-label-caps text-label-caps text-on-surface uppercase w-1/2">Classification Class</th>
+<th class="p-3 border-b border-outline-variant font-label-caps text-label-caps text-on-surface uppercase w-1/2">Probability</th>
+</tr>
+</thead>
+<tbody class="font-data-display text-data-display text-on-surface" id="wit-probs-tbody"></tbody>
+</table>
+</div>
+</div>
+<div class="hidden md:flex flex-col h-full" id="tab-gradcam">
+<div class="flex flex-col md:flex-row gap-4 h-full">
+<div class="w-full md:w-1/2 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center">Original Source</span>
+<div class="border border-outline-variant rounded bg-surface relative h-[300px] flex items-center justify-center">
+<img class="max-w-full max-h-full object-contain" id="wit-gradcam-original"/>
+</div>
+</div>
+<div class="w-full md:w-1/2 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center">Activation Heatmap (Grad-CAM)</span>
+<div class="border border-outline-variant rounded bg-surface relative h-[300px] flex items-center justify-center">
+<img class="max-w-full max-h-full object-contain" id="wit-gradcam-heatmap"/>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-4 w-full border border-primary text-primary font-label-caps text-label-caps uppercase py-3 rounded hover:bg-surface-container-low transition-colors disabled:opacity-50 flex items-center justify-center gap-2" disabled="" id="wit-download-pdf-btn">
+<span class="material-symbols-outlined text-[18px]">download</span> Download Report (PDF)
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-highest dark:bg-inverse-surface full-width bottom border-t border-outline-variant dark:border-outline flat no shadows w-full py-panel-padding px-margin-desktop flex flex-col md:flex-row justify-between items-center transition-all duration-200 mt-auto">
+<div class="mb-4 md:mb-0">
+<span class="font-headline-sm text-headline-sm text-on-surface dark:text-inverse-on-surface block mb-1">WIT RESEARCH &amp; ANALYSIS</span>
+<span class="font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface">© <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics. Institutional use only.</span>
+</div>
+<nav class="flex flex-wrap gap-4 items-center justify-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 uppercase" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 uppercase" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 uppercase" href="../policies_wit_research_analysis/code.html#institutional-guidelines">Institutional Guidelines</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200 uppercase" href="../policies_wit_research_analysis/code.html#ethics">Ethics Statement</a>
+</nav>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  window.WIT_CONFIG = { module: "leukemia", classes: ["Benign", "Early", "Pre", "Pro"], flaggedClasses: ["Early", "Pre", "Pro"] };
+</script>
+<script src="../shared/wit-detect.js?v=20260805-preview2"></script>
+<script src="../shared/wit-chat.js?v=20260805-v4"></script>
+<script src="../shared/wit-search.js"></script>
+<script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+<script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
+</body></html>

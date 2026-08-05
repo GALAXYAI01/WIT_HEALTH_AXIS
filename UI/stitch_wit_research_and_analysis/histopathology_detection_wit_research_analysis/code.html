@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Histopathologic Cancer Detection - WIT RESEARCH &amp; ANALYSIS</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Libre+Caslon+Text:wght@400;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#001d33", "inverse-surface": "#2d3135", "inverse-primary": "#abc9f2", "error-container": "#ffdad6", "on-background": "#181c20", "surface-container-lowest": "#ffffff", "on-secondary-container": "#3e6080", "on-tertiary-fixed-variant": "#842131", "on-error-container": "#93000a", "surface-tint": "#436084", "on-surface": "#181c20", "secondary-fixed-dim": "#a7caee", "secondary-fixed": "#cee5ff", "on-tertiary-container": "#fa7b86", "tertiary": "#4f0012", "on-primary-container": "#87a4cc", "secondary-container": "#b8dbff", "tertiary-fixed-dim": "#ffb2b6", "on-error": "#ffffff", "on-secondary": "#ffffff", "surface": "#f7f9ff", "error": "#ba1a1a", "on-secondary-fixed-variant": "#264968", "on-primary-fixed": "#001c38", "surface-variant": "#e0e3e8", "on-primary": "#ffffff", "secondary": "#3f6181", "on-surface-variant": "#43474e", "surface-container-high": "#e5e8ed", "primary-fixed-dim": "#abc9f2", "on-primary-fixed-variant": "#2b486b", "primary-container": "#1b3a5c", "primary": "#002444", "inverse-on-surface": "#eef1f6", "surface-bright": "#f7f9ff", "tertiary-fixed": "#ffdadb", "background": "#f7f9ff", "surface-container-highest": "#e0e3e8", "on-tertiary-fixed": "#40000d", "outline": "#73777f", "surface-dim": "#d7dadf", "primary-fixed": "#d2e4ff", "tertiary-container": "#711124", "outline-variant": "#c3c6cf", "on-tertiary": "#ffffff", "surface-container": "#ebeef3", "surface-container-low": "#f1f4f9"
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    spacing: { "unit": "4px", "margin-mobile": "16px", "container-max": "1440px", "margin-desktop": "32px", "gutter": "16px", "panel-padding": "20px" },
+                    fontFamily: {
+                        "data-display": ["JetBrains Mono"], "body-sm": ["Inter"], "headline-md": ["Libre Caslon Text"], "label-caps": ["Inter"], "headline-lg": ["Libre Caslon Text"], "body-lg": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Libre Caslon Text"], "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    fontSize: {
+                        "data-display": ["14px", { lineHeight: "20px", letterSpacing: "-0.01em", fontWeight: "500" }],
+                        "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+<header class="bg-surface dark:bg-on-background docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows z-50">
+<div class="flex flex-col w-full px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center justify-between h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+                    WIT RESEARCH &amp; ANALYSIS
+                </div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 font-label-caps text-label-caps py-2" href="../home_wit_research_analysis/code.html">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 font-label-caps text-label-caps py-2" href="../about_wit_research_analysis/code.html">About</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-caps text-label-caps py-2" href="../detection_wit_research_analysis/code.html">Detection</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 font-label-caps text-label-caps py-2" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80 font-label-caps text-label-caps py-2" href="../contact_wit_research_analysis/code.html">Contact</a>
+</nav>
+<button class="hidden md:flex items-center space-x-2 text-on-surface-variant hover:text-primary font-label-caps text-label-caps transition-colors">
+<span class="material-symbols-outlined text-[18px]">accessibility_new</span>
+<span>Accessibility</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<section class="col-span-1 md:col-span-12 mb-4">
+<div class="bg-surface-container-lowest border border-outline-variant p-panel-padding flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-2">Histopathologic Cancer Detection</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+                        Automated analysis of whole slide images (WSI) to identify metastatic breast cancer in small image patches derived from larger pathological scans.
+                    </p>
+</div>
+<div class="flex gap-2">
+<span class="inline-flex items-center px-3 py-1 bg-outline-variant/20 border border-outline-variant text-on-surface font-label-caps text-label-caps tracking-wider">
+                        BENIGN
+                    </span>
+<span class="inline-flex items-center px-3 py-1 bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary-container font-label-caps text-label-caps tracking-wider">
+                        MALIGNANT
+                    </span>
+</div>
+</div>
+</section>
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<details class="bg-surface-container-lowest border border-outline-variant group" open="">
+<summary class="p-panel-padding flex justify-between items-center cursor-pointer hover:bg-surface-container-low transition-colors border-b border-transparent group-open:border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm text-primary">Patient Context</h2>
+<span class="material-symbols-outlined text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-panel-padding flex flex-col">
+<div class="flex justify-between py-3 border-b border-outline-variant last:border-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant">PATIENT NAME</span>
+<input class="font-data-display text-data-display text-on-surface bg-transparent text-right border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-name" placeholder="Optional"/>
+</div>
+<div class="flex justify-between py-3 border-b border-outline-variant last:border-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AGE</span>
+<input class="font-data-display text-data-display text-on-surface bg-transparent text-right border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-age" placeholder="Optional"/>
+</div>
+<div class="flex justify-between py-3 border-b border-outline-variant last:border-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SAMPLE ID</span>
+<input class="font-data-display text-data-display text-on-surface bg-transparent text-right border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-sample-id" placeholder="Optional"/>
+</div>
+<div class="flex justify-between py-3 border-b border-outline-variant last:border-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SCAN DATE</span>
+<input class="font-data-display text-data-display text-on-surface bg-transparent text-right border-b border-outline-variant focus:border-secondary outline-none" id="wit-patient-date" type="date"/>
+</div>
+</div>
+</details>
+<div class="bg-surface-container-lowest border border-outline-variant p-panel-padding flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4">Input Data</h2>
+<div class="border-2 border-dashed border-outline-variant hover:border-secondary hover:bg-surface-container-low transition-colors p-8 flex flex-col items-center justify-center text-center cursor-pointer relative min-h-[200px]">
+<span class="material-symbols-outlined text-[48px] text-outline mb-4">image_search</span>
+<p class="font-body-md text-body-md text-on-surface mb-2">Drag and drop WSI patches here</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Supports TIFF, SVS, NDPI (Max 50MB)</p>
+<img class="hidden max-h-32 mb-3 border border-outline-variant relative z-10" id="wit-image-preview"/>
+<label id="wit-browse-btn" for="wit-file-input" role="button" tabindex="0" class="bg-primary-container text-on-primary px-6 py-2 rounded font-label-caps text-label-caps hover:opacity-90 transition-opacity relative z-10 cursor-pointer">
+                        BROWSE FILES
+                    </label>
+<input accept=".tiff,.svs,.ndpi,image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="wit-file-input" type="file"/>
+</div>
+<div class="hidden mt-3 p-3 border border-error text-error font-body-sm text-body-sm" id="wit-error-message"></div>
+<button class="mt-4 w-full bg-primary-container text-on-primary font-label-caps text-label-caps py-3 rounded hover:opacity-90 transition-opacity disabled:opacity-50" disabled="" id="wit-analyze-btn">
+                        ANALYZE IMAGE
+                    </button>
+</div>
+</div>
+<div class="col-span-1 md:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant h-full flex flex-col">
+<div class="flex border-b border-outline-variant px-4 pt-2 gap-6 overflow-x-auto no-scrollbar">
+<button class="pb-3 px-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors whitespace-nowrap" id="tab-btn-summary" onclick="witSwitchTab('summary')">
+                        SUMMARY
+                    </button>
+<button class="pb-3 px-2 font-label-caps text-label-caps text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors whitespace-nowrap" id="tab-btn-probs" onclick="witSwitchTab('probs')">
+                        ALL PROBABILITIES
+                    </button>
+<button class="pb-3 px-2 font-label-caps text-label-caps text-on-surface-variant border-b-2 border-transparent transition-colors whitespace-nowrap" id="tab-btn-gradcam" onclick="witSwitchTab('gradcam')">
+                        GRAD-CAM ANALYSIS
+                    </button>
+</div>
+<div class="p-panel-padding flex-grow relative overflow-hidden">
+<div class="h-full flex flex-col items-center justify-center py-12" id="wit-upload-empty-state">
+<span class="material-symbols-outlined text-6xl text-outline-variant mb-4">biotech</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Awaiting Sample Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-md">Upload a whole slide image patch to run the analysis.</p>
+</div>
+<div class="hidden h-full flex flex-col" id="wit-results-container">
+<div class="hidden h-full flex flex-col" id="tab-summary">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4">Diagnostic Overview</h3>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="border border-outline-variant p-4 bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">PREDICTED CLASS</span>
+<span class="font-headline-md text-headline-md text-tertiary-container block" id="wit-predicted-class"></span>
+</div>
+<div class="border border-outline-variant p-4 bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">CONFIDENCE SCORE</span>
+<span class="font-headline-md text-headline-md text-on-surface block" id="wit-confidence"></span>
+</div>
+</div>
+<div class="hidden inline-flex items-center px-3 py-1 border w-fit" id="wit-flag-badge" style="border-color: #8B2635; color: #8B2635; background-color: rgba(139,38,53,0.1);"></div>
+</div>
+<div class="hidden h-full flex flex-col" id="tab-probs">
+<div class="overflow-x-auto w-full no-scrollbar border border-outline-variant">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-3 border-b border-r border-outline-variant font-label-caps text-label-caps text-on-surface-variant w-1/2">CLASS</th>
+<th class="p-3 border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant w-1/2">PROBABILITY</th>
+</tr>
+</thead>
+<tbody id="wit-probs-tbody"></tbody>
+</table>
+</div>
+</div>
+<div class="hidden h-full flex flex-col" id="tab-gradcam">
+<div class="flex justify-between items-end mb-4 border-b border-outline-variant pb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Spatial Activation Signature</h3>
+<button class="border border-secondary text-secondary px-3 py-1 font-label-caps text-label-caps hover:bg-secondary/10 transition-colors flex items-center gap-1 disabled:opacity-50" disabled="" id="wit-download-pdf-btn">
+<span class="material-symbols-outlined text-[16px]">download</span> DOWNLOAD REPORT (PDF)
+                            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+<div class="flex flex-col h-full">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">ORIGINAL SAMPLE</span>
+<div class="flex-grow border border-outline-variant bg-surface-container-low relative min-h-[300px] flex items-center justify-center">
+<img class="max-w-full max-h-full object-contain" id="wit-gradcam-original"/>
+</div>
+</div>
+<div class="flex flex-col h-full">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">GRAD-CAM ACTIVATION MAP</span>
+<div class="flex-grow border border-outline-variant bg-surface-container-low relative min-h-[300px] flex items-center justify-center">
+<img class="max-w-full max-h-full object-contain" id="wit-gradcam-heatmap"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-highest dark:bg-inverse-surface full-width bottom border-t border-outline-variant dark:border-outline flat no shadows mt-auto z-10">
+<div class="w-full py-panel-padding px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-4">
+<div class="flex flex-col gap-2 md:w-1/3">
+<span class="font-headline-sm text-headline-sm text-on-surface dark:text-inverse-on-surface">
+                    WIT RESEARCH LAB
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">
+                    © <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics. Institutional use only.
+                </p>
+</div>
+<div class="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-end md:w-2/3">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#institutional-guidelines">Institutional Guidelines</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#ethics">Ethics Statement</a>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  window.WIT_CONFIG = { module: "histopathology", classes: ["Benign", "Malignant"], flaggedClasses: ["Malignant"] };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.min.js?v=20260805"></script>
+<script src="../shared/wit-detect.js?v=20260805-preview2"></script>
+<script src="../shared/wit-chat.js?v=20260805-v4"></script>
+<script src="../shared/wit-search.js"></script>
+<script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+<script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
+</body></html>

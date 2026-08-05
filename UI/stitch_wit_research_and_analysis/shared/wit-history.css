@@ -1,0 +1,705 @@
+.wit-history-page {
+  --history-ink: #082a49;
+  --history-blue: #0d5f91;
+  --history-cyan: #159ca8;
+  --history-cyan-soft: #e8f7f8;
+  --history-green: #277653;
+  --history-green-soft: #e7f5ed;
+  --history-amber: #9b6510;
+  --history-amber-soft: #fff4dc;
+  --history-red: #a93645;
+  --history-red-soft: #fcedef;
+  --history-bg: #f3f7fa;
+  --history-card: #ffffff;
+  --history-line: #d5e1e9;
+  --history-muted: #5c7181;
+  background: var(--history-bg);
+  color: var(--history-ink);
+}
+
+.wit-history-page main.wit-history-main {
+  width: min(1220px, calc(100% - 48px));
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 120px 0 88px;
+}
+
+.wit-history-page .wit-history-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--history-line);
+}
+
+.wit-history-page .wit-history-kicker,
+.wit-history-page .wit-history-stat-label,
+.wit-history-page .wit-history-table th,
+.wit-history-page .wit-history-field-label {
+  color: var(--history-blue);
+  font-family: "Public Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.wit-history-page .wit-history-title {
+  margin: 10px 0 12px;
+  color: var(--history-ink);
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+
+.wit-history-page .wit-history-lede {
+  max-width: 700px;
+  margin: 0;
+  color: var(--history-muted);
+  font-family: "Public Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.wit-history-page .wit-history-primary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  flex: 0 0 auto;
+  padding: 10px 15px;
+  border: 1px solid var(--history-ink);
+  border-radius: 6px;
+  background: var(--history-ink);
+  color: #ffffff;
+  font-family: "Public Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 16px;
+  text-transform: uppercase;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.wit-history-page .wit-history-primary-action:hover,
+.wit-history-page .wit-history-primary-action:focus-visible {
+  background: var(--history-blue);
+  transform: translateY(-2px);
+}
+
+.wit-history-page .wit-history-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.wit-history-page .wit-history-stat-card {
+  min-height: 126px;
+  padding: 22px 24px;
+  border: 1px solid var(--history-line);
+  border-radius: 8px;
+  background: var(--history-card);
+  box-shadow: 0 8px 24px rgba(8, 42, 73, .05);
+}
+
+.wit-history-page .wit-history-stat-value {
+  display: block;
+  margin-top: 12px;
+  color: var(--history-ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.wit-history-page .wit-history-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.6fr) repeat(4, minmax(130px, .8fr)) 40px;
+  gap: 12px;
+  align-items: end;
+  margin-top: 34px;
+  padding: 18px;
+  border: 1px solid var(--history-line);
+  border-radius: 8px;
+  background: var(--history-card);
+  box-shadow: 0 8px 24px rgba(8, 42, 73, .04);
+}
+
+.wit-history-page .wit-history-field {
+  min-width: 0;
+}
+
+.wit-history-page .wit-history-field-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--history-muted);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.wit-history-page .wit-history-input,
+.wit-history-page .wit-history-select {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--history-ink);
+  font-family: "Public Sans", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.wit-history-page .wit-history-input:focus,
+.wit-history-page .wit-history-select:focus {
+  border-color: var(--history-cyan);
+  outline: 3px solid rgba(21, 156, 168, .16);
+}
+
+.wit-history-page .wit-history-clear {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--history-blue);
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease;
+}
+
+.wit-history-page .wit-history-clear:hover,
+.wit-history-page .wit-history-clear:focus-visible {
+  border-color: var(--history-cyan);
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-feedback {
+  min-height: 20px;
+  margin-top: 14px;
+  color: var(--history-red);
+  font-family: "Public Sans", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.wit-history-page .wit-history-table-wrap {
+  margin-top: 16px;
+  overflow: auto;
+  border: 1px solid var(--history-line);
+  border-radius: 8px;
+  background: var(--history-card);
+  box-shadow: 0 12px 30px rgba(8, 42, 73, .06);
+}
+
+.wit-history-page .wit-history-table {
+  width: 100%;
+  min-width: 940px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.wit-history-page .wit-history-table th,
+.wit-history-page .wit-history-table td {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--history-line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.wit-history-page .wit-history-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eef5f8;
+  color: var(--history-ink);
+  white-space: nowrap;
+}
+
+.wit-history-page .wit-history-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.wit-history-page .wit-history-table tbody tr:hover {
+  background: #f8fbfc;
+}
+
+.wit-history-page .wit-history-scan-id,
+.wit-history-page .wit-history-date,
+.wit-history-page .wit-history-confidence {
+  color: var(--history-ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.wit-history-page .wit-history-date {
+  white-space: nowrap;
+}
+
+.wit-history-page .wit-history-disease,
+.wit-history-page .wit-history-prediction {
+  color: var(--history-ink);
+  font-family: "Public Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.wit-history-page .wit-history-prediction--muted {
+  color: var(--history-muted);
+  font-weight: 400;
+}
+
+.wit-history-page .wit-history-confidence-wrap {
+  display: grid;
+  min-width: 106px;
+  gap: 5px;
+}
+
+.wit-history-page .wit-history-progress {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #dce8ed;
+}
+
+.wit-history-page .wit-history-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--history-cyan);
+}
+
+.wit-history-page .wit-history-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 99px;
+  font-family: "Public Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wit-history-badge--completed {
+  background: var(--history-green-soft);
+  color: var(--history-green);
+}
+
+.wit-history-badge--failed {
+  background: var(--history-red-soft);
+  color: var(--history-red);
+}
+
+.wit-history-page .wit-history-thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-thumb-placeholder {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: #f4f8fa;
+  color: var(--history-muted);
+}
+
+.wit-history-page .wit-history-details-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid var(--history-blue);
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--history-blue);
+  cursor: pointer;
+  font-family: "Public Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .18s ease, color .18s ease;
+}
+
+.wit-history-page .wit-history-details-button:hover,
+.wit-history-page .wit-history-details-button:focus-visible {
+  background: var(--history-blue);
+  color: #ffffff;
+}
+
+.wit-history-page .wit-history-empty {
+  padding: 52px 24px;
+  text-align: center;
+}
+
+.wit-history-page .wit-history-empty .material-symbols-outlined {
+  color: var(--history-cyan);
+  font-size: 38px;
+}
+
+.wit-history-page .wit-history-empty h2 {
+  margin: 12px 0 7px;
+  color: var(--history-ink);
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.wit-history-page .wit-history-empty p {
+  margin: 0;
+  color: var(--history-muted);
+  font-family: "Public Sans", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.wit-history-page .wit-history-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.wit-history-page .wit-history-page-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--history-blue);
+  cursor: pointer;
+  font-family: "Public Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.wit-history-page .wit-history-page-button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.wit-history-page .wit-history-page-button:not(:disabled):hover,
+.wit-history-page .wit-history-page-button:not(:disabled):focus-visible {
+  border-color: var(--history-cyan);
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-page-status {
+  color: var(--history-muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.wit-history-page dialog.wit-history-dialog {
+  width: min(640px, calc(100% - 32px));
+  max-width: 640px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--history-card);
+  box-shadow: 0 24px 80px rgba(8, 42, 73, .24);
+  color: var(--history-ink);
+}
+
+.wit-history-page dialog.wit-history-dialog::backdrop {
+  background: rgba(8, 42, 73, .4);
+}
+
+.wit-history-page .wit-history-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--history-line);
+  background: #eef5f8;
+}
+
+.wit-history-page .wit-history-dialog-kicker {
+  margin: 0 0 5px;
+  color: var(--history-cyan);
+  font-family: "Public Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.wit-history-page .wit-history-dialog-title {
+  margin: 0;
+  color: var(--history-ink);
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+  line-height: 31px;
+}
+
+.wit-history-page .wit-history-dialog-close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--history-line);
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--history-blue);
+  cursor: pointer;
+}
+
+.wit-history-page .wit-history-dialog-close:hover,
+.wit-history-page .wit-history-dialog-close:focus-visible {
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-dialog-body {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+}
+.wit-history-page .wit-history-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 24px 24px;
+}
+.wit-history-page .wit-history-dialog-secondary {
+  border: 1px solid var(--history-line);
+  background: #fff;
+  color: var(--history-navy);
+  padding: 10px 16px;
+  font: 700 11px/1 "Public Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  cursor: pointer;
+}
+.wit-history-page .wit-history-dialog-secondary:hover {
+  border-color: var(--history-cyan);
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-dialog-image {
+  width: 160px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--history-line);
+  border-radius: 6px;
+  background: var(--history-cyan-soft);
+}
+
+.wit-history-page .wit-history-detail-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.wit-history-page .wit-history-detail-list div {
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--history-line);
+}
+
+.wit-history-page .wit-history-detail-list div:last-child {
+  border-bottom: 0;
+}
+
+.wit-history-page .wit-history-detail-list dt {
+  color: var(--history-muted);
+  font-family: "Public Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.wit-history-page .wit-history-detail-list dd {
+  margin: 3px 0 0;
+  color: var(--history-ink);
+  font-family: "Public Sans", sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.wit-history-page :focus-visible {
+  outline: 3px solid rgba(21, 156, 168, .38);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1050px) {
+  .wit-history-page .wit-history-toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wit-history-page .wit-history-field:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .wit-history-page main.wit-history-main {
+    width: calc(100% - 32px);
+    padding: 100px 0 64px;
+  }
+
+  .wit-history-page .wit-history-heading {
+    display: block;
+  }
+
+  .wit-history-page .wit-history-title {
+    font-size: 36px;
+  }
+
+  .wit-history-page .wit-history-primary-action {
+    margin-top: 20px;
+  }
+
+  .wit-history-page .wit-history-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .wit-history-page .wit-history-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wit-history-page .wit-history-field:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .wit-history-page .wit-history-table-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .wit-history-page .wit-history-table {
+    display: block;
+    min-width: 0;
+  }
+
+  .wit-history-page .wit-history-table thead {
+    display: none;
+  }
+
+  .wit-history-page .wit-history-table tbody,
+  .wit-history-page .wit-history-table tr,
+  .wit-history-page .wit-history-table td {
+    display: block;
+  }
+
+  .wit-history-page .wit-history-table tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--history-line);
+    border-radius: 8px;
+    background: var(--history-card);
+    box-shadow: 0 8px 24px rgba(8, 42, 73, .05);
+  }
+
+  .wit-history-page .wit-history-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    min-height: 48px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--history-line);
+    text-align: right;
+  }
+
+  .wit-history-page .wit-history-table td::before {
+    color: var(--history-muted);
+    content: attr(data-label);
+    flex: 0 0 auto;
+    font-family: "Public Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 16px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .wit-history-page .wit-history-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .wit-history-page .wit-history-table td[data-label="Thumbnail"] {
+    justify-content: space-between;
+  }
+
+  .wit-history-page .wit-history-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .wit-history-page .wit-history-page-status {
+    order: -1;
+    text-align: center;
+  }
+
+  .wit-history-page .wit-history-dialog-body {
+    grid-template-columns: 1fr;
+  }
+  .wit-history-page .wit-history-dialog-actions {
+    flex-direction: column;
+  }
+  .wit-history-page .wit-history-dialog-actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .wit-history-page .wit-history-dialog-image {
+    width: min(220px, 100%);
+  }
+}
+
+@media (max-width: 450px) {
+  .wit-history-page .wit-history-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .wit-history-page .wit-history-field:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wit-history-page *,
+  .wit-history-page *::before,
+  .wit-history-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

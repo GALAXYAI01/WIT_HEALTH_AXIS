@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Malaria Detection - WIT RESEARCH &amp; ANALYSIS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#ffb2b6", "on-error": "#ffffff", "on-surface": "#181c20", "surface": "#f7f9ff",
+                "tertiary-container": "#711124", "surface-tint": "#436084", "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed": "#40000d", "on-tertiary-container": "#fa7b86", "surface-container-high": "#e5e8ed",
+                "on-tertiary-fixed-variant": "#842131", "outline-variant": "#c3c6cf", "on-surface-variant": "#43474e",
+                "surface-container-low": "#f1f4f9", "on-secondary-fixed": "#001d33", "on-secondary": "#ffffff",
+                "inverse-on-surface": "#eef1f6", "error-container": "#ffdad6", "on-error-container": "#93000a",
+                "on-secondary-fixed-variant": "#264968", "tertiary-fixed": "#ffdadb", "error": "#ba1a1a",
+                "on-background": "#181c20", "on-secondary-container": "#3e6080", "outline": "#73777f",
+                "secondary-container": "#b8dbff", "on-tertiary": "#ffffff", "primary-container": "#1b3a5c",
+                "background": "#f7f9ff", "on-primary": "#ffffff", "inverse-surface": "#2d3135",
+                "surface-dim": "#d7dadf", "surface-container": "#ebeef3", "primary-fixed-dim": "#abc9f2",
+                "primary-fixed": "#d2e4ff", "inverse-primary": "#abc9f2", "surface-container-highest": "#e0e3e8",
+                "secondary-fixed": "#cee5ff", "surface-bright": "#f7f9ff", "secondary": "#3f6181",
+                "primary": "#002444", "on-primary-fixed-variant": "#2b486b", "on-primary-fixed": "#001c38",
+                "surface-variant": "#e0e3e8", "secondary-fixed-dim": "#a7caee", "tertiary": "#4f0012",
+                "on-primary-container": "#87a4cc", "btn-primary": "#1B3A5C", "btn-secondary": "#4A6C8C",
+                "status-malignant": "#8B2635", "status-malignant-bg": "rgba(139, 38, 53, 0.1)",
+                "status-clear": "#334155", "status-clear-bg": "rgba(51, 65, 85, 0.1)"
+        },
+        "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+        "spacing": { "margin-mobile": "16px", "container-max": "1440px", "unit": "4px", "gutter": "16px", "margin-desktop": "32px", "panel-padding": "20px" },
+        "fontFamily": {
+                "data-display": ["JetBrains Mono"], "headline-lg": ["Playfair Display"], "label-caps": ["Public Sans"],
+                "headline-lg-mobile": ["Playfair Display"], "body-sm": ["Public Sans"], "headline-sm": ["Playfair Display"],
+                "headline-md": ["Playfair Display"], "body-lg": ["Public Sans"], "body-md": ["Public Sans"]
+        },
+        "fontSize": {
+                "data-display": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { background-color: #F6F7F9; }
+        .diagnostic-card { background-color: #FFFFFF; border: 1px solid #D1D5DB; }
+        .input-field { border: 1px solid #D1D5DB; transition: border-color 0.2s; }
+        .input-field:focus { border-color: #4A6C8C; outline: none; box-shadow: none; }
+        .tab-btn.active { border-bottom: 2px solid #1B3A5C; color: #1B3A5C; }
+        .hairline-divider { border-bottom: 1px solid #E5E7EB; }
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col">
+<style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+<header class="bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex flex-col w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-center h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+                    WIT RESEARCH &amp; ANALYSIS
+                </div>
+<nav class="hidden md:flex space-x-6 h-full items-center">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../home_wit_research_analysis/code.html">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../about_wit_research_analysis/code.html">About</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 h-full flex items-center cursor-pointer active:opacity-80" href="../detection_wit_research_analysis/code.html">Detection</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 h-full flex items-center" href="../contact_wit_research_analysis/code.html">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary p-2">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="font-label-caps text-label-caps text-primary border border-outline-variant px-3 py-1 rounded">
+                        Accessibility
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="col-span-1 md:col-span-4 flex flex-col gap-6">
+<section class="diagnostic-card p-panel-padding">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Malaria Diagnostics</h1>
+<div class="hairline-divider mb-4"></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                        Automated screening of Giemsa-stained thin blood smear slides. Utilizing convolutional neural networks to identify Plasmodium falciparum presence with high sensitivity.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-caps text-label-caps px-2 py-1 rounded-[2px]" style="background-color: rgba(139, 38, 53, 0.1); color: #8B2635;">
+                            Parasitized
+                        </span>
+<span class="font-label-caps text-label-caps px-2 py-1 rounded-[2px]" style="background-color: rgba(51, 65, 85, 0.1); color: #334155;">
+                            Uninfected
+                        </span>
+</div>
+</section>
+<section class="diagnostic-card p-panel-padding">
+<div class="flex justify-between items-center cursor-pointer mb-2" onclick="document.getElementById('patient-details-form').classList.toggle('hidden')">
+<h2 class="font-headline-sm text-headline-sm text-primary">Patient Protocol</h2>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<div class="hairline-divider mb-4"></div>
+<div class="space-y-4" id="patient-details-form">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Patient Name / ID String</label>
+<input class="input-field w-full p-2 font-data-display text-data-display bg-surface-container-lowest" id="wit-patient-name" placeholder="e.g. PT-2024-88A" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Age</label>
+<input class="input-field w-full p-2 font-data-display text-data-display bg-surface-container-lowest" id="wit-patient-age" placeholder="Yrs" type="number"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Gender</label>
+<select class="input-field w-full p-2 font-data-display text-data-display bg-surface-container-lowest" id="wit-patient-gender">
+<option value="">Select</option>
+<option>M</option>
+<option>F</option>
+<option>U</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Sample ID</label>
+<input class="input-field w-full p-2 font-data-display text-data-display bg-surface-container-lowest" id="wit-patient-sample-id" placeholder="SMP-..." type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Collection Date</label>
+<input class="input-field w-full p-2 font-data-display text-data-display bg-surface-container-lowest" id="wit-patient-date" type="date"/>
+</div>
+</div>
+</div>
+</section>
+<section class="diagnostic-card p-panel-padding">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-2">Slide Acquisition</h2>
+<div class="hairline-divider mb-4"></div>
+<div class="border-2 border-dashed border-outline-variant p-6 flex flex-col items-center justify-center bg-surface-container-lowest mb-4 hover:bg-surface-container-low transition-colors cursor-pointer group relative">
+<span class="material-symbols-outlined text-4xl text-outline mb-2 group-hover:text-primary transition-colors">microbiology</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mb-3">Drop thin blood smear image here<br/>or click to browse</p>
+<img class="hidden max-h-32 mb-3 border border-outline-variant" id="wit-image-preview"/>
+<label id="wit-browse-btn" for="wit-file-input" role="button" tabindex="0" class="bg-surface-container-highest border border-outline-variant text-on-surface font-label-caps text-label-caps px-4 py-2 rounded relative z-10 cursor-pointer">
+                            Choose File
+                        </label>
+<input accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="wit-file-input" type="file"/>
+</div>
+<div class="hidden mb-4 p-3 border border-error text-error font-body-sm text-body-sm" id="wit-error-message"></div>
+<button class="w-full bg-[#1B3A5C] text-white font-label-caps text-label-caps py-3 rounded-[4px] hover:bg-opacity-90 transition-opacity disabled:opacity-50" disabled="" id="wit-analyze-btn">
+                        Analyze Image
+                    </button>
+</section>
+</div>
+<div class="col-span-1 md:col-span-8 flex flex-col">
+<section class="diagnostic-card h-full flex flex-col">
+<div class="px-panel-padding pt-panel-padding bg-surface-container-lowest border-b border-outline-variant flex gap-6">
+<button class="tab-btn pb-3 font-label-caps text-label-caps text-on-surface-variant border-b-2 border-transparent hover:text-primary transition-colors" id="tab-btn-summary" onclick="witSwitchTab('summary')">Summary</button>
+<button class="tab-btn pb-3 font-label-caps text-label-caps text-on-surface-variant border-b-2 border-transparent hover:text-primary transition-colors" id="tab-btn-probs" onclick="witSwitchTab('probs')">All Probabilities</button>
+<button class="tab-btn pb-3 font-label-caps text-label-caps text-on-surface-variant border-b-2 border-transparent hover:text-primary transition-colors" id="tab-btn-gradcam" onclick="witSwitchTab('gradcam')">Grad-CAM Overlay</button>
+</div>
+<div class="p-panel-padding flex-grow bg-surface-container-lowest flex flex-col">
+<div class="flex-grow flex flex-col items-center justify-center py-12" id="wit-upload-empty-state">
+<span class="material-symbols-outlined text-6xl text-outline-variant mb-4 animate-pulse">biotech</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Awaiting Sample Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-md">
+                                Upload a digitized thin blood smear image to initiate the convolutional neural network analysis sequence.
+                            </p>
+</div>
+<div class="hidden flex-col gap-6 w-full" id="wit-results-container">
+<div class="hidden flex-col gap-6" id="tab-summary">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">Diagnostic Output</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="wit-predicted-class-label">Primary finding</p>
+</div>
+<div class="hidden px-3 py-1 rounded-[2px]" id="wit-flag-badge" style="background-color: rgba(139, 38, 53, 0.1); border: 1px solid #8B2635; color: #8B2635;"></div>
+</div>
+<div class="hairline-divider"></div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-3 border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Predicted class</p>
+<p class="font-headline-sm text-headline-sm text-primary" id="wit-predicted-class"></p>
+</div>
+<div class="bg-surface-container p-3 border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Confidence</p>
+<p class="font-data-display text-data-display text-primary" id="wit-confidence"></p>
+</div>
+</div>
+</div>
+<div class="hidden flex-col gap-4" id="tab-probs">
+<div class="overflow-x-auto border border-outline-variant">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-3 border-b border-r border-outline-variant font-label-caps text-label-caps text-on-surface-variant w-1/2">CLASS</th>
+<th class="p-3 border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant w-1/2">PROBABILITY</th>
+</tr>
+</thead>
+<tbody id="wit-probs-tbody"></tbody>
+</table>
+</div>
+</div>
+<div class="hidden flex-col gap-4" id="tab-gradcam">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ORIGINAL SAMPLE</span>
+<div class="border border-outline-variant bg-surface-container-low min-h-[240px] flex items-center justify-center">
+<img class="max-w-full max-h-[240px]" id="wit-gradcam-original"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">GRAD-CAM ACTIVATION MAP</span>
+<div class="border border-outline-variant bg-surface-container-low min-h-[240px] flex items-center justify-center">
+<img class="max-w-full max-h-[240px]" id="wit-gradcam-heatmap"/>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full border border-primary text-primary font-label-caps text-label-caps py-3 rounded-[4px] hover:bg-surface-container-low transition-colors disabled:opacity-50 flex items-center justify-center gap-2" disabled="" id="wit-download-pdf-btn">
+<span class="material-symbols-outlined text-[18px]">download</span> Download Report (PDF)
+                        </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline full-width bottom mt-auto">
+<div class="w-full py-panel-padding px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center transition-all duration-200">
+<div class="font-headline-sm text-headline-sm text-on-surface dark:text-inverse-on-surface mb-4 md:mb-0">
+                WIT RESEARCH LAB
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant text-center md:text-left mb-4 md:mb-0 max-w-md">
+                © <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics. Institutional use only.
+            </p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim" href="../policies_wit_research_analysis/code.html#institutional-guidelines">Institutional Guidelines</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim" href="../policies_wit_research_analysis/code.html#ethics">Ethics Statement</a>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  window.WIT_CONFIG = { module: "malaria", classes: ["Parasitized", "Uninfected"], flaggedClasses: ["Parasitized"] };
+</script>
+<script src="../shared/wit-detect.js?v=20260805-preview2"></script>
+<script src="../shared/wit-chat.js?v=20260805-v4"></script>
+<script src="../shared/wit-search.js"></script>
+<script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+<script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
+</body></html>

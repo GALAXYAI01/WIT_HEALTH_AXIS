@@ -1,0 +1,100 @@
+.wit-admin-page,
+.wit-auth-page {
+  --admin-navy: #082a49;
+  --admin-blue: #0d5f91;
+  --admin-cyan: #159ca8;
+  --admin-cyan-soft: #e8f7f8;
+  --admin-green: #277653;
+  --admin-red: #a93645;
+  --admin-amber: #9b6510;
+  --admin-ink: #14273a;
+  --admin-muted: #5c7181;
+  --admin-line: #d5e1e9;
+  --admin-bg: #f3f7fa;
+}
+.wit-admin-page {
+  background: var(--admin-bg);
+  color: var(--admin-ink);
+}
+.wit-admin-page .wit-admin-main { width: min(1280px, calc(100% - 48px)); margin: 0 auto; padding: 120px 0 80px; }
+.wit-admin-page .wit-admin-kicker { color: var(--admin-blue); font: 700 11px/16px "Public Sans", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.wit-admin-page .wit-admin-title { margin: 8px 0 0; color: var(--admin-navy); font: 700 clamp(30px, 4vw, 48px)/1.05 "Playfair Display", serif; }
+.wit-admin-page .wit-admin-lede { max-width: 680px; margin: 12px 0 0; color: var(--admin-muted); font: 400 14px/1.65 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-topline { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding-bottom:24px; border-bottom:1px solid var(--admin-line); }
+.wit-admin-page .wit-admin-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px; }
+.wit-admin-page .wit-admin-button { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:40px; border:1px solid var(--admin-navy); background:var(--admin-navy); color:#fff; padding:0 14px; cursor:pointer; font:700 11px/1 "Public Sans", sans-serif; letter-spacing:.07em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-button:hover { background:var(--admin-blue); border-color:var(--admin-blue); }
+.wit-admin-page .wit-admin-button.secondary { background:#fff; color:var(--admin-navy); border-color:var(--admin-line); }
+.wit-admin-page .wit-admin-button.secondary:hover { border-color:var(--admin-cyan); background:var(--admin-cyan-soft); }
+.wit-admin-page .wit-admin-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; margin-top:24px; }
+.wit-admin-page .wit-admin-stat, .wit-admin-page .wit-admin-panel { border:1px solid var(--admin-line); background:#fff; box-shadow:0 10px 25px rgba(8,42,73,.05); }
+.wit-admin-page .wit-admin-stat { padding:18px; }
+.wit-admin-page .wit-admin-stat-label { color:var(--admin-muted); font:700 10px/15px "Public Sans", sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-stat-value { display:block; margin-top:10px; color:var(--admin-navy); font:700 32px/1 "Playfair Display", serif; }
+.wit-admin-page .wit-admin-section-grid { display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(320px, .85fr); gap:18px; margin-top:18px; }
+.wit-admin-page .wit-admin-panel { min-width:0; padding:20px; }
+.wit-admin-page .wit-admin-panel-wide { margin-top:18px; }
+.wit-admin-page .wit-admin-panel-header { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:16px; }
+.wit-admin-page .wit-admin-panel-title { margin:0; color:var(--admin-navy); font:700 22px/1.1 "Playfair Display", serif; }
+.wit-admin-page .wit-admin-panel-note { margin:5px 0 0; color:var(--admin-muted); font:400 12px/1.5 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-table-wrap { overflow-x:auto; }
+.wit-admin-page .wit-admin-table { width:100%; min-width:760px; border-collapse:collapse; font:400 12px/1.4 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-table th { position:sticky; top:0; padding:10px 8px; border-bottom:2px solid var(--admin-line); color:var(--admin-blue); text-align:left; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-table td { padding:12px 8px; border-bottom:1px solid #e7eef3; color:var(--admin-ink); vertical-align:top; }
+.wit-admin-page .wit-admin-table tr:hover td { background:#f8fbfd; }
+.wit-admin-page .wit-admin-badge { display:inline-flex; padding:5px 7px; border-radius:999px; font:700 10px/1 "Public Sans", sans-serif; letter-spacing:.04em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-badge.ok { color:var(--admin-green); background:#e7f5ed; }
+.wit-admin-page .wit-admin-badge.warn { color:var(--admin-amber); background:#fff4dc; }
+.wit-admin-page .wit-admin-badge.fail { color:var(--admin-red); background:#fcedef; }
+.wit-admin-page .wit-admin-bar-row { display:grid; grid-template-columns:120px minmax(0,1fr) 62px; align-items:center; gap:10px; margin:13px 0; color:var(--admin-muted); font:600 12px/1 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-bar-track { height:9px; background:#e7eef3; }
+.wit-admin-page .wit-admin-bar-fill { height:100%; min-width:2px; background:var(--admin-cyan); }
+.wit-admin-page .wit-admin-health-list { display:grid; gap:10px; margin:0; }
+.wit-admin-page .wit-admin-health-list div { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:10px; border-bottom:1px solid #e7eef3; font:400 12px/1.4 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-health-list dt { color:var(--admin-muted); }
+.wit-admin-page .wit-admin-health-list dd { margin:0; color:var(--admin-ink); font-weight:700; text-align:right; }
+.wit-admin-page .wit-admin-toolbar { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.wit-admin-page .wit-admin-input, .wit-admin-page .wit-admin-select { min-height:38px; border:1px solid var(--admin-line); background:#fff; padding:0 10px; color:var(--admin-ink); font:400 12px/1 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-input { flex:1 1 240px; }
+.wit-admin-page .wit-admin-select { min-width:150px; }
+.wit-admin-page .wit-admin-toggle { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid #e7eef3; font:600 12px/1.4 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-toggle input { width:18px; height:18px; accent-color:var(--admin-cyan); }
+.wit-admin-page .wit-admin-feedback { min-height:18px; margin:10px 0 0; color:var(--admin-muted); font:400 12px/1.4 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-delete-button { display:inline-flex; align-items:center; gap:5px; border:1px solid #edc3c9; background:#fff; color:var(--admin-red); padding:7px 9px; cursor:pointer; font:700 10px/1 "Public Sans", sans-serif; letter-spacing:.05em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-delete-button:hover { border-color:var(--admin-red); background:#fcedef; }
+.wit-admin-page .wit-admin-user-access { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:20px; padding-top:18px; border-top:1px solid #e7eef3; }
+.wit-admin-page .wit-admin-panel-subtitle { margin:0; color:var(--admin-navy); font:700 16px/1.2 "Playfair Display", serif; }
+.wit-admin-page .material-symbols-outlined { display:inline-block; font-family:"Material Symbols Outlined"; font-size:18px; font-style:normal; font-weight:400; line-height:1; letter-spacing:normal; text-transform:none; white-space:nowrap; word-wrap:normal; direction:ltr; -webkit-font-feature-settings:"liga"; -webkit-font-smoothing:antialiased; font-feature-settings:"liga"; }
+.wit-admin-page .wit-admin-dialog { width:min(440px, calc(100% - 32px)); max-width:none; padding:0; border:1px solid var(--admin-line); background:#fff; color:var(--admin-ink); box-shadow:0 24px 60px rgba(8,42,73,.2); }
+.wit-admin-page .wit-admin-dialog::backdrop { background:rgba(8,42,73,.38); }
+.wit-admin-page .wit-admin-dialog form { padding:24px; }
+.wit-admin-page .wit-admin-dialog-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.wit-admin-page .wit-admin-dialog-close { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--admin-line); background:#fff; color:var(--admin-muted); cursor:pointer; font:400 22px/1 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-dialog-close:hover { border-color:var(--admin-cyan); color:var(--admin-navy); background:var(--admin-cyan-soft); }
+.wit-admin-page .wit-admin-dialog-label { display:block; margin-top:16px; color:var(--admin-blue); font:700 10px/1 "Public Sans", sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+.wit-admin-page .wit-admin-dialog .wit-admin-input { display:block; width:100%; min-height:42px; margin-top:8px; }
+.wit-admin-page .wit-admin-dialog-control { display:block; width:100%; min-height:42px; margin-top:8px; }
+.wit-admin-page .wit-admin-dialog-feedback { min-height:18px; margin:12px 0 0; color:var(--admin-red); font:400 12px/1.4 "Public Sans", sans-serif; }
+.wit-admin-page .wit-admin-dialog-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:18px; }
+.wit-admin-page .wit-admin-dialog-actions .wit-admin-button { min-width:104px; }
+.wit-auth-page { min-height:100vh; background:linear-gradient(135deg, #f3f7fa, #e8f7f8); color:var(--admin-ink); }
+.wit-auth-page .wit-auth-shell { width:min(980px, calc(100% - 32px)); min-height:100vh; margin:0 auto; display:grid; place-items:center; padding:40px 0; }
+.wit-auth-page .wit-auth-card { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr); width:100%; border:1px solid var(--admin-line); background:#fff; box-shadow:0 24px 60px rgba(8,42,73,.12); }
+.wit-auth-page .wit-auth-intro { padding:42px; background:var(--admin-navy); color:#fff; }
+.wit-auth-page .wit-auth-form { padding:42px; }
+.wit-auth-page .wit-auth-mark { display:grid; place-items:center; width:42px; height:42px; margin-bottom:28px; background:#fff; color:var(--admin-navy); font:700 18px "Playfair Display", serif; }
+.wit-auth-page h1 { margin:0; font:700 36px/1.08 "Playfair Display", serif; }
+.wit-auth-page .wit-auth-intro p { max-width:390px; margin:14px 0 0; color:#d6e8ef; font:400 14px/1.7 "Public Sans", sans-serif; }
+.wit-auth-page .wit-auth-kicker { color:#9de0e4; font:700 10px/1 "Public Sans", sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+.wit-auth-page .wit-auth-form h2 { margin:0; color:var(--admin-navy); font:700 25px/1.1 "Playfair Display", serif; }
+.wit-auth-page label { display:block; margin-top:18px; color:var(--admin-blue); font:700 10px/1 "Public Sans", sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+.wit-auth-page input { display:block; width:100%; min-height:44px; margin-top:8px; border:1px solid var(--admin-line); padding:0 12px; color:var(--admin-ink); font:400 13px/1 "Public Sans", sans-serif; }
+.wit-auth-page input:focus { outline:2px solid var(--admin-cyan-soft); border-color:var(--admin-cyan); }
+.wit-auth-page button { width:100%; min-height:44px; margin-top:22px; border:1px solid var(--admin-navy); background:var(--admin-navy); color:#fff; cursor:pointer; font:700 11px/1 "Public Sans", sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+.wit-auth-page button:hover { background:var(--admin-blue); }
+.wit-auth-page .wit-auth-secondary { margin-top:10px; background:#fff; color:var(--admin-navy); border-color:var(--admin-line); }
+.wit-auth-page .wit-auth-status { min-height:22px; margin:14px 0 0; color:var(--admin-red); font:400 12px/1.5 "Public Sans", sans-serif; }
+.wit-auth-page .wit-auth-setup { margin-top:24px; padding-top:20px; border-top:1px solid var(--admin-line); }
+.wit-auth-page .wit-auth-setup summary { color:var(--admin-blue); cursor:pointer; font:700 11px/1 "Public Sans", sans-serif; letter-spacing:.07em; text-transform:uppercase; }
+@media (max-width: 900px) { .wit-admin-page .wit-admin-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .wit-admin-page .wit-admin-section-grid { grid-template-columns:1fr; } .wit-auth-page .wit-auth-card { grid-template-columns:1fr; } }
+@media (max-width: 620px) { .wit-admin-page .wit-admin-main { width:calc(100% - 32px); padding-top:100px; } .wit-admin-page .wit-admin-topline { align-items:flex-start; flex-direction:column; } .wit-admin-page .wit-admin-actions { justify-content:flex-start; } .wit-admin-page .wit-admin-grid { grid-template-columns:1fr; } .wit-auth-page .wit-auth-intro, .wit-auth-page .wit-auth-form { padding:28px; } }

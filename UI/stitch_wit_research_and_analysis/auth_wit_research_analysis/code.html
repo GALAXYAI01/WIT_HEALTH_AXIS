@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Access | WIT Research &amp; Analysis</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../shared/wit-admin.css?v=20260805-v4" />
+</head>
+<body class="wit-auth-page" style="opacity:0;transition:opacity .25s ease">
+  <main class="wit-auth-shell">
+    <section class="wit-auth-card" aria-labelledby="auth-title">
+      <div class="wit-auth-intro">
+        <div class="wit-auth-mark" aria-hidden="true">WIT</div>
+        <span class="wit-auth-kicker">Version 2.0 / Controlled access</span>
+        <h1 id="auth-title">Research operations, secured.</h1>
+        <p>Use an authorized account to access administrative analytics, scan history, audit events, system health, and platform settings.</p>
+        <p>Detection remains available through the existing research workflow. Administrative actions are protected by role-based access control.</p>
+      </div>
+      <div class="wit-auth-form">
+        <h2>Sign in</h2>
+        <form id="wit-login-form">
+          <label for="wit-login-email">Email</label>
+          <input id="wit-login-email" name="email" type="email" autocomplete="username" required />
+          <label for="wit-login-password">Password</label>
+          <input id="wit-login-password" name="password" type="password" autocomplete="current-password" required />
+          <button type="submit">Sign in to admin</button>
+        </form>
+        <p class="wit-auth-status" id="wit-auth-status" role="status" aria-live="polite"></p>
+        <details class="wit-auth-setup">
+          <summary>First-time setup</summary>
+          <p class="wit-admin-panel-note">The first account becomes an administrator. Later registration is disabled unless the backend explicitly enables it.</p>
+          <form id="wit-register-form">
+            <label for="wit-register-email">Admin email</label>
+            <input id="wit-register-email" name="email" type="email" autocomplete="email" required />
+            <label for="wit-register-password">Password</label>
+            <input id="wit-register-password" name="password" type="password" minlength="12" autocomplete="new-password" required />
+            <button class="wit-auth-secondary" type="submit">Create first account</button>
+          </form>
+        </details>
+        <a class="block mt-6 text-center font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="../home_wit_research_analysis/code.html">Return to WIT Research &amp; Analysis</a>
+      </div>
+    </section>
+  </main>
+  <script src="../shared/wit-auth.js"></script>
+  <script>requestAnimationFrame(() => { document.body.style.opacity = 1; });</script>
+</body>
+</html>

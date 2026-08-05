@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>WIT RESEARCH &amp; ANALYSIS - Scan History</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="../shared/wit-history.css?v=20260805" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#002444",
+            background: "#f3f7fa",
+            surface: "#ffffff",
+            "surface-container-low": "#eef5f8",
+            "surface-container-highest": "#e0e9ee",
+            "on-surface-variant": "#5c7181",
+            "outline-variant": "#d5e1e9",
+            secondary: "#0d5f91"
+          },
+          fontFamily: {
+            "data-display": ["JetBrains Mono"],
+            "headline-lg": ["Playfair Display"],
+            "headline-sm": ["Playfair Display"],
+            "label-caps": ["Public Sans"],
+            "body-sm": ["Public Sans"],
+            "body-md": ["Public Sans"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="wit-history-page min-h-screen flex flex-col antialiased">
+  <style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+  <header class="bg-surface border-b border-outline-variant w-full fixed top-0 z-50">
+    <div class="flex flex-col w-full px-4 md:px-8 max-w-[1440px] mx-auto py-4">
+      <div class="flex justify-between items-center w-full">
+        <div class="font-headline-sm text-xl font-bold text-primary tracking-tight">WIT RESEARCH &amp; ANALYSIS</div>
+        <div class="hidden md:flex items-center space-x-5">
+          <nav class="flex items-center space-x-2" aria-label="Primary navigation">
+            <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../home_wit_research_analysis/code.html">Home</a>
+            <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../about_wit_research_analysis/code.html">About</a>
+            <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../detection_wit_research_analysis/code.html">Detection</a>
+            <a class="px-2 py-1 font-label-caps text-[11px] text-primary border-b-2 border-primary" href="code.html" aria-current="page">Scan History</a>
+            <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+            <a class="px-2 py-1 font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../contact_wit_research_analysis/code.html">Contact</a>
+          </nav>
+        </div>
+        <div class="md:hidden flex items-center">
+          <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">history</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wit-history-main flex-grow" id="main-content">
+    <section class="wit-history-heading" aria-labelledby="history-title">
+      <div>
+        <span class="wit-history-kicker">01 / ANALYSIS AUDIT LOG</span>
+        <h1 class="wit-history-title" id="history-title">Scan History</h1>
+        <p class="wit-history-lede">Review which disease analyses have been run, when they were performed, and what the research model returned. Detailed reports are generated on demand and are not persisted.</p>
+      </div>
+      <a class="wit-history-primary-action" href="../detection_wit_research_analysis/code.html"><span class="material-symbols-outlined" aria-hidden="true">add</span>New analysis</a>
+    </section>
+
+    <section class="wit-history-summary" aria-label="Scan history summary">
+      <article class="wit-history-stat-card">
+        <span class="wit-history-stat-label">Total scans</span>
+        <strong class="wit-history-stat-value" id="wit-history-total">0</strong>
+      </article>
+      <article class="wit-history-stat-card">
+        <span class="wit-history-stat-label">Diseases analyzed</span>
+        <strong class="wit-history-stat-value" id="wit-history-diseases">0</strong>
+      </article>
+      <article class="wit-history-stat-card">
+        <span class="wit-history-stat-label">Today's scans</span>
+        <strong class="wit-history-stat-value" id="wit-history-today">0</strong>
+      </article>
+    </section>
+
+    <section aria-labelledby="history-results-title">
+      <div class="flex items-end justify-between gap-4 mt-12">
+        <div>
+          <span class="wit-history-kicker">02 / SEARCH &amp; FILTER</span>
+          <h2 class="font-headline-sm text-2xl text-primary mt-2" id="history-results-title">Previous analyses</h2>
+        </div>
+      </div>
+      <div class="wit-history-toolbar" role="search" aria-label="Filter scan history">
+        <div class="wit-history-field">
+          <label class="wit-history-field-label" for="wit-history-search">Search scan or disease</label>
+          <input class="wit-history-input" id="wit-history-search" type="search" placeholder="SCN-... or malaria" autocomplete="off"/>
+        </div>
+        <div class="wit-history-field">
+          <label class="wit-history-field-label" for="wit-history-module">Disease</label>
+          <select class="wit-history-select" id="wit-history-module">
+            <option value="">All diseases</option>
+            <option value="malaria">Malaria</option>
+            <option value="leukemia">Leukemia</option>
+            <option value="histopathology">Histopathology</option>
+          </select>
+        </div>
+        <div class="wit-history-field">
+          <label class="wit-history-field-label" for="wit-history-status">Status</label>
+          <select class="wit-history-select" id="wit-history-status">
+            <option value="">All statuses</option>
+            <option value="Completed">Completed</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </div>
+        <div class="wit-history-field">
+          <label class="wit-history-field-label" for="wit-history-date">Date</label>
+          <input class="wit-history-input" id="wit-history-date" type="date"/>
+        </div>
+        <div class="wit-history-field">
+          <label class="wit-history-field-label" for="wit-history-sort">Sort</label>
+          <select class="wit-history-select" id="wit-history-sort">
+            <option value="latest">Latest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+        </div>
+        <button class="wit-history-clear" id="wit-history-clear" type="button" aria-label="Clear scan history filters" title="Clear filters"><span class="material-symbols-outlined" aria-hidden="true">filter_alt_off</span></button>
+      </div>
+      <p class="wit-history-feedback" id="wit-history-feedback" role="status" aria-live="polite"></p>
+
+      <div class="wit-history-table-wrap" id="wit-history-table-wrap">
+        <table class="wit-history-table">
+          <thead>
+            <tr>
+              <th scope="col">Scan ID</th>
+              <th scope="col">Date &amp; time</th>
+              <th scope="col">Disease analyzed</th>
+              <th scope="col">AI prediction</th>
+              <th scope="col">Confidence</th>
+              <th scope="col">Status</th>
+              <th scope="col">Thumbnail</th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="wit-history-table-body"></tbody>
+        </table>
+      </div>
+      <div class="wit-history-empty hidden" id="wit-history-empty">
+        <span class="material-symbols-outlined" aria-hidden="true">manage_search</span>
+        <h2>No scans match these filters</h2>
+        <p>Run a new analysis or clear the filters to see the audit log.</p>
+      </div>
+      <div class="wit-history-pagination" aria-label="Scan history pagination">
+        <button class="wit-history-page-button" id="wit-history-previous" type="button"><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>Previous</button>
+        <span class="wit-history-page-status" id="wit-history-page-status">No scans found</span>
+        <button class="wit-history-page-button" id="wit-history-next" type="button">Next<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-surface-container-highest border-t border-outline-variant mt-auto w-full">
+    <div class="w-full py-5 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center max-w-[1440px] mx-auto gap-4">
+      <div class="font-headline-sm text-lg text-primary">WIT RESEARCH LAB</div>
+      <div class="text-center md:text-left font-body-sm text-xs text-on-surface-variant max-w-md">&copy; <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics.<br/><span class="wit-footer-version">Research platform v2.0</span></div>
+      <nav class="flex flex-wrap justify-center gap-3" aria-label="Footer navigation">
+        <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+        <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+        <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-primary" href="../contact_wit_research_analysis/code.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog class="wit-history-dialog" id="wit-history-dialog" aria-labelledby="wit-history-dialog-title">
+    <div class="wit-history-dialog-header">
+      <div>
+        <p class="wit-history-dialog-kicker">Scan details</p>
+        <h2 class="wit-history-dialog-title" id="wit-history-dialog-title"><span id="wit-history-dialog-id">Scan</span></h2>
+      </div>
+      <button class="wit-history-dialog-close" id="wit-history-dialog-close" type="button" aria-label="Close scan details" title="Close"><span class="material-symbols-outlined" aria-hidden="true">close</span></button>
+    </div>
+    <div class="wit-history-dialog-body">
+      <div id="wit-history-dialog-image-slot"></div>
+      <dl class="wit-history-detail-list">
+        <div><dt>Disease selected</dt><dd id="wit-history-dialog-disease">Not available</dd></div>
+        <div><dt>AI prediction</dt><dd id="wit-history-dialog-prediction">Not available</dd></div>
+        <div><dt>Confidence score</dt><dd id="wit-history-dialog-confidence">Not available</dd></div>
+        <div><dt>Scan date and time</dt><dd id="wit-history-dialog-date">Not available</dd></div>
+        <div><dt>Status</dt><dd id="wit-history-dialog-status">Not available</dd></div>
+        <div><dt>Model version</dt><dd id="wit-history-dialog-model">Not recorded</dd></div>
+        <div><dt>Patient name</dt><dd id="wit-history-dialog-patient-name">Not provided</dd></div>
+        <div><dt>Age / gender</dt><dd id="wit-history-dialog-patient-demographics">Not provided</dd></div>
+        <div><dt>Sample ID</dt><dd id="wit-history-dialog-sample-id">Not provided</dd></div>
+        <div class="hidden" id="wit-history-dialog-error-row"><dt>Failure reason</dt><dd id="wit-history-dialog-error"></dd></div>
+      </dl>
+    </div>
+    <div class="wit-history-dialog-actions">
+      <button class="wit-history-primary-action" id="wit-history-download" type="button"><span class="material-symbols-outlined" aria-hidden="true">download</span>Download report</button>
+      <button class="wit-history-dialog-secondary" id="wit-history-dialog-close-secondary" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+  <script src="../shared/vendor/jspdf.umd.min.js"></script>
+  <script src="../shared/wit-chat.js?v=20260805-v4"></script>
+  <script src="../shared/wit-history.js?v=20260805-v2"></script>
+  <script>requestAnimationFrame(() => { document.body.style.opacity = 1; document.body.style.transform = 'none'; });</script>
+</body>
+</html>

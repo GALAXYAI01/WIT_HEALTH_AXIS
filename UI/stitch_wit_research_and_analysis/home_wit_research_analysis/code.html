@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WIT RESEARCH &amp; ANALYSIS - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#ffb2b6", "on-error": "#ffffff", "on-surface": "#181c20", "surface": "#f7f9ff",
+                "tertiary-container": "#711124", "surface-tint": "#436084", "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed": "#40000d", "on-tertiary-container": "#fa7b86", "surface-container-high": "#e5e8ed",
+                "on-tertiary-fixed-variant": "#842131", "outline-variant": "#c3c6cf", "on-surface-variant": "#43474e",
+                "surface-container-low": "#f1f4f9", "on-secondary-fixed": "#001d33", "on-secondary": "#ffffff",
+                "inverse-on-surface": "#eef1f6", "error-container": "#ffdad6", "on-error-container": "#93000a",
+                "on-secondary-fixed-variant": "#264968", "tertiary-fixed": "#ffdadb", "error": "#ba1a1a",
+                "on-background": "#181c20", "on-secondary-container": "#3e6080", "outline": "#73777f",
+                "secondary-container": "#b8dbff", "on-tertiary": "#ffffff", "primary-container": "#1b3a5c",
+                "background": "#f7f9ff", "on-primary": "#ffffff", "inverse-surface": "#2d3135",
+                "surface-dim": "#d7dadf", "surface-container": "#ebeef3", "primary-fixed-dim": "#abc9f2",
+                "primary-fixed": "#d2e4ff", "inverse-primary": "#abc9f2", "surface-container-highest": "#e0e3e8",
+                "secondary-fixed": "#cee5ff", "surface-bright": "#f7f9ff", "secondary": "#3f6181",
+                "primary": "#002444", "on-primary-fixed-variant": "#2b486b", "on-primary-fixed": "#001c38",
+                "surface-variant": "#e0e3e8", "secondary-fixed-dim": "#a7caee", "tertiary": "#4f0012",
+                "on-primary-container": "#87a4cc"
+        },
+        "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+        "spacing": { "margin-mobile": "16px", "container-max": "1440px", "unit": "4px", "gutter": "16px", "margin-desktop": "32px", "panel-padding": "20px" },
+        "fontFamily": {
+                "data-display": ["JetBrains Mono"], "headline-lg": ["Playfair Display"], "label-caps": ["Public Sans"],
+                "headline-lg-mobile": ["Playfair Display"], "body-sm": ["Public Sans"], "headline-sm": ["Playfair Display"],
+                "headline-md": ["Playfair Display"], "body-lg": ["Public Sans"], "body-md": ["Public Sans"]
+        },
+        "fontSize": {
+                "data-display": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, #E5E7EB 1px, transparent 1px),
+                linear-gradient(to bottom, #E5E7EB 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<style>body{opacity:0;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease}</style>
+<header class="bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline w-full fixed top-0 z-50">
+<div class="flex flex-col w-full px-margin-desktop max-w-container-max mx-auto py-4">
+<div class="flex justify-between items-center w-full">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+                    WIT RESEARCH &amp; ANALYSIS
+                </div>
+<div class="hidden md:flex items-center space-x-6">
+<nav class="flex space-x-6">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-caps text-label-caps hover:text-primary transition-colors" href="code.html">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../about_wit_research_analysis/code.html">About</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../detection_wit_research_analysis/code.html">Detection</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../guidelines_wit_research_analysis/code.html">Guidelines</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors px-2 py-1 cursor-pointer active:opacity-80" href="../contact_wit_research_analysis/code.html">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">search</span>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary" href="#">Accessibility</a>
+</div>
+</div>
+<div class="md:hidden flex items-center">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full grid-bg relative">
+<div class="bg-error-container border border-error text-on-error-container p-4 mb-8 flex items-start gap-3 rounded-none shadow-sm">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<div>
+<h3 class="font-label-caps text-label-caps font-bold text-error">CRITICAL NOTICE</h3>
+<p class="font-body-sm text-body-sm mt-1">Research and educational prototype — not a validated clinical diagnostic tool. For institutional analysis only.</p>
+</div>
+</div>
+<section class="mb-16 flex flex-col lg:flex-row gap-8 items-center bg-surface-container-lowest border border-outline-variant p-8 relative overflow-hidden">
+<div class="lg:w-1/2 z-10 relative">
+<h1 class="font-headline-lg text-headline-lg md:text-[40px] md:leading-[48px] text-primary mb-6">Institutional Research Platform for AI-Assisted Microscopic Diagnostics</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl">
+                    WIT provides advanced analytical models to support institutional research in pathology. Our high-throughput image analysis pipeline leverages deep learning to identify morphological anomalies with precision, accelerating data processing for academic studies.
+                </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-primary-container text-on-primary font-label-caps text-label-caps px-6 py-3 border-none shadow-none hover:bg-primary transition-colors flex items-center gap-2" href="../malaria_detection_wit_research_analysis/code.html">
+                        INITIATE ANALYSIS <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="border border-secondary text-secondary font-label-caps text-label-caps px-6 py-3 bg-transparent hover:bg-surface-container transition-colors" href="../guidelines_wit_research_analysis/code.html">
+                        REVIEW GUIDELINES
+                    </a>
+</div>
+</div>
+<div class="lg:w-1/2 w-full h-[400px] border border-outline-variant relative bg-surface-variant overflow-hidden">
+<img id="wit-hero-image" src="assets/hero-malaria.jpg" alt="Malaria microscopy sample" class="absolute inset-0 w-full h-full object-cover" />
+<div class="absolute inset-x-0 bottom-0 bg-primary/85 px-5 py-4"><span id="wit-hero-caption" class="font-label-caps text-label-caps text-white">MALARIA</span></div>
+</div>
+</section>
+<div class="mb-12" id="wit-disease-showcase"></div>
+<section class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary border-b border-outline-variant pb-2 mb-6">Detection Modules</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<a class="bg-surface-container-lowest border border-outline-variant p-6 hover:bg-surface-container-low transition-colors cursor-pointer group flex flex-col h-full" href="../malaria_detection_wit_research_analysis/code.html">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[32px] text-secondary">biotech</span>
+<span class="font-data-display text-data-display text-outline">MOD-01</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2 group-hover:text-secondary-fixed-variant transition-colors">Malaria Detection</h3>
+<div class="w-full h-px bg-outline-variant my-3"></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                        Automated identification of Plasmodium falciparum ring stages in Giemsa-stained thin blood smears.
+                    </p>
+<div class="flex items-center text-primary font-label-caps text-label-caps group-hover:underline">
+                        ACCESS MODULE <span class="material-symbols-outlined text-[16px] ml-1">chevron_right</span>
+</div>
+</a>
+<a class="bg-surface-container-lowest border border-outline-variant p-6 hover:bg-surface-container-low transition-colors cursor-pointer group flex flex-col h-full" href="../leukemia_detection_wit_research_analysis/code.html">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[32px] text-secondary">bloodtype</span>
+<span class="font-data-display text-data-display text-outline">MOD-02</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2 group-hover:text-secondary-fixed-variant transition-colors">Leukemia Screening</h3>
+<div class="w-full h-px bg-outline-variant my-3"></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                        Morphological analysis of white blood cells for the preliminary identification of anomalous blast cells in peripheral blood.
+                    </p>
+<div class="flex items-center text-primary font-label-caps text-label-caps group-hover:underline">
+                        ACCESS MODULE <span class="material-symbols-outlined text-[16px] ml-1">chevron_right</span>
+</div>
+</a>
+<a class="bg-surface-container-lowest border border-outline-variant p-6 hover:bg-surface-container-low transition-colors cursor-pointer group flex flex-col h-full" href="../histopathology_detection_wit_research_analysis/code.html">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[32px] text-secondary">science</span>
+<span class="font-data-display text-data-display text-outline">MOD-03</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2 group-hover:text-secondary-fixed-variant transition-colors">Histopathology</h3>
+<div class="w-full h-px bg-outline-variant my-3"></div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">
+                        Tissue architecture evaluation tools for H&amp;E stained slides, focusing on structural deviations and cellular density mapping.
+                    </p>
+<div class="flex items-center text-primary font-label-caps text-label-caps group-hover:underline">
+                        ACCESS MODULE <span class="material-symbols-outlined text-[16px] ml-1">chevron_right</span>
+</div>
+</a>
+</div>
+</section>
+<section class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary border-b border-outline-variant pb-2 mb-6">How it works</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="border border-outline-variant bg-surface-container-lowest p-6">
+<span class="font-data-display text-data-display text-secondary">01</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Upload a microscopy image</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Choose a supported blood smear or histopathology image from the detection module.</p>
+</div>
+<div class="border border-outline-variant bg-surface-container-lowest p-6">
+<span class="font-data-display text-data-display text-secondary">02</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Model runs inference with Grad-CAM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The selected convolutional neural network analyzes the image and produces an activation heatmap.</p>
+</div>
+<div class="border border-outline-variant bg-surface-container-lowest p-6">
+<span class="font-data-display text-data-display text-secondary">03</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-3 mb-2">Review results and download a report</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Review the predicted class, probabilities, and visual explanation before downloading the report.</p>
+</div>
+</div>
+</section>
+<section class="border border-outline-variant bg-surface-container-lowest p-0 w-full lg:w-1/3">
+<div class="p-4 border-b border-outline-variant bg-surface-container flex justify-between items-center">
+<h4 class="font-label-caps text-label-caps text-on-surface">SYSTEM STATUS</h4>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim animate-pulse"></div>
+<span class="font-data-display text-[10px] text-on-surface-variant">ONLINE</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Processing Node Alpha</span>
+<span class="font-data-display text-data-display text-primary">98.4%</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Database Latency</span>
+<span class="font-data-display text-data-display text-primary">12ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Last Model Update</span>
+<span class="font-data-display text-data-display text-primary">04:00 UTC</span>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-auto w-full">
+<div class="w-full py-panel-padding px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-4">
+<div class="font-headline-sm text-headline-sm text-on-surface dark:text-inverse-on-surface">
+                WIT RESEARCH LAB
+            </div>
+<div class="text-center md:text-left font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface max-w-md">
+                © <span id="wit-current-year"></span> WIT Research Lab. Applied deep learning for microscopic diagnostics. Institutional use only.
+            </div>
+<nav class="flex flex-wrap justify-center gap-4">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#privacy">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#terms">Terms of Research</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#institutional-guidelines">Institutional Guidelines</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-all duration-200" href="../policies_wit_research_analysis/code.html#ethics">Ethics Statement</a>
+</nav>
+</div>
+</footer>
+<style>
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(400px); }
+        }
+    </style>
+<script>document.getElementById('wit-current-year').textContent = new Date().getFullYear();</script>
+<script>
+(function() {
+  const slides = [
+    { title: "Malaria", image: "assets/hero-malaria.jpg", text: "Malaria is caused by Plasmodium parasites transmitted through infected mosquito bites, detectable in Giemsa-stained blood smears under a microscope.", link: "../malaria_detection_wit_research_analysis/code.html" },
+    { title: "Leukemia", image: "assets/hero-leukemia.jpg", text: "Leukemia is a cancer of blood-forming tissue that disrupts the body's ability to fight infection, often first identified through abnormal white blood cell morphology.", link: "../leukemia_detection_wit_research_analysis/code.html" },
+    { title: "Histopathology", image: "assets/hero-histopathology.jpg", text: "Histopathological analysis of tissue slides remains the clinical gold standard for confirming metastatic cancer spread.", link: "../histopathology_detection_wit_research_analysis/code.html" },
+  ];
+  let idx = 0;
+  const el = document.getElementById('wit-disease-showcase');
+  const heroImage = document.getElementById('wit-hero-image');
+  const heroCaption = document.getElementById('wit-hero-caption');
+  function render() {
+    const s = slides[idx];
+    heroImage.src = s.image;
+    heroImage.alt = `${s.title} microscopy sample`;
+    heroCaption.textContent = s.title.toUpperCase();
+    el.innerHTML = `<div class="p-panel-padding border border-outline-variant bg-surface-container-lowest"><span class="font-label-caps text-label-caps text-primary">${s.title.toUpperCase()}</span><p class="font-body-lg text-body-lg text-on-surface-variant mt-2 mb-4">${s.text}</p><a href="${s.link}" class="font-label-caps text-label-caps text-primary hover:underline">Go to ${s.title} detection &rarr;</a></div>`;
+  }
+  render();
+  setInterval(() => { idx = (idx + 1) % slides.length; render(); }, 10000);
+})();
+</script>
+<script src="../shared/wit-chat.js?v=20260805-v4"></script>
+<script src="../shared/wit-search.js"></script>
+<script>const revealPage = () => { document.body.style.opacity = 1; document.body.style.transform = 'none'; }; if (typeof requestAnimationFrame === 'function') requestAnimationFrame(revealPage); else revealPage();</script>
+</body></html>
