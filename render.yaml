@@ -29,7 +29,7 @@ services:
       - key: WIT_INFERENCE_BACKEND
         value: onnx
       - key: WIT_RELEASE
-        value: 20260806-inference-fix-v1
+        value: 20260806-inference-fp16-v1
       - key: WIT_JWT_SECRET
         generateValue: true
       - key: WIT_FIELD_ENCRYPTION_KEY

@@ -159,11 +159,17 @@ def load_available_detectors(device="cpu", names=None):
         if names is not None and name not in names:
             continue
         if os.path.exists(config.weights_path):
-            onnx_path = str(Path(config.weights_path).with_suffix(".onnx"))
+            fp16_path = Path(config.weights_path).with_suffix(".fp16.onnx")
+            quantized_path = Path(config.weights_path).with_suffix(".int8.onnx")
+            base_path = Path(config.weights_path).with_suffix(".onnx")
+            onnx_path = next(
+                (path for path in (fp16_path, quantized_path, base_path) if path.exists()),
+                base_path,
+            )
             if constrained_backend:
                 if not os.path.exists(onnx_path):
                     raise FileNotFoundError(f"missing ONNX model for {name}: {onnx_path}")
-                detectors[name] = OnnxDiseaseDetector(config, onnx_path)
+                detectors[name] = OnnxDiseaseDetector(config, str(onnx_path))
             else:
                 detectors[name] = DiseaseDetector(config, config.weights_path, device)
     return detectors
