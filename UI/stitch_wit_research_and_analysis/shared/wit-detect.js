@@ -248,7 +248,27 @@
     }
 
     if (gradcamOriginal && lastImageDataUrl) gradcamOriginal.src = lastImageDataUrl;
-    if (gradcamHeatmap) gradcamHeatmap.src = 'data:image/png;base64,' + data.gradcam_image_base64;
+    if (gradcamHeatmap) {
+      gradcamHeatmap.src = 'data:image/png;base64,' + data.gradcam_image_base64;
+      gradcamHeatmap.alt = data.gradcam_available === false
+        ? 'Grad-CAM unavailable for this deployment'
+        : 'Grad-CAM activation map';
+      const gradcamPanel = gradcamHeatmap.closest('#tab-gradcam');
+      if (gradcamPanel) {
+        let note = gradcamPanel.querySelector('#wit-gradcam-note');
+        if (data.gradcam_available === false) {
+          if (!note) {
+            note = document.createElement('p');
+            note.id = 'wit-gradcam-note';
+            note.className = 'mb-3 border border-outline-variant bg-surface-container-low px-3 py-2 font-body-sm text-body-sm text-on-surface-variant';
+            gradcamPanel.prepend(note);
+          }
+          note.textContent = data.gradcam_message || 'Grad-CAM is unavailable for this deployment.';
+        } else if (note) {
+          note.remove();
+        }
+      }
+    }
 
     if (downloadBtn) downloadBtn.disabled = false;
   }

@@ -22,6 +22,10 @@ services:
         value: ""
       - key: WIT_HISTORY_DB_PATH
         value: /tmp/wit-scan-history.db
+      - key: WIT_TORCH_THREADS
+        value: "1"
+      - key: WIT_ENABLE_GRADCAM
+        value: "false"
       - key: WIT_JWT_SECRET
         generateValue: true
       - key: WIT_FIELD_ENCRYPTION_KEY

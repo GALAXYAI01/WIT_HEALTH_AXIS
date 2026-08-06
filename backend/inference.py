@@ -1,4 +1,5 @@
 import base64
+import gc
 import io
 import os
 
@@ -12,11 +13,20 @@ class DiseaseDetector:
         from src.data.transforms import get_val_transforms
         from src.models.architecture import build_model
 
+        thread_count = max(1, int(os.environ.get("WIT_TORCH_THREADS", "1")))
+        torch.set_num_threads(thread_count)
+        try:
+            torch.set_num_interop_threads(thread_count)
+        except RuntimeError:
+            pass
+
         self.config = module_config
         self.device = torch.device(device)
         self.model = build_model(module_config.backbone, module_config.num_classes, pretrained=False)
         state_dict = torch.load(weights_path, map_location=self.device)
         self.model.load_state_dict(state_dict)
+        del state_dict
+        gc.collect()
         self.model.to(self.device)
         self.model.eval()
         self.transform = get_val_transforms(module_config.img_size)
@@ -37,7 +47,7 @@ class DiseaseDetector:
         transformed = self.transform(image=rgb_image)
         input_tensor = transformed["image"].unsqueeze(0).to(self.device)
 
-        with torch.no_grad():
+        with torch.inference_mode():
             outputs = self.model(input_tensor)
             probs = torch.softmax(outputs, dim=1)[0].cpu().numpy()
 
@@ -48,9 +58,23 @@ class DiseaseDetector:
             name: float(probs[i]) for i, name in enumerate(self.config.class_names)
         }
 
-        visualization, _ = generate_gradcam(
-            self.model, self.config.backbone, input_tensor, normalized_rgb, predicted_idx
-        )
+        default_gradcam = "false" if os.environ.get("RENDER") or os.environ.get("RENDER_SERVICE_ID") else "true"
+        gradcam_enabled = os.environ.get("WIT_ENABLE_GRADCAM", default_gradcam).strip().lower() in {"1", "true", "yes", "on"}
+        gradcam_available = True
+        gradcam_message = None
+        if gradcam_enabled:
+            try:
+                visualization, _ = generate_gradcam(
+                    self.model, self.config.backbone, input_tensor, normalized_rgb, predicted_idx
+                )
+            except Exception:
+                visualization = resized
+                gradcam_available = False
+                gradcam_message = "Grad-CAM was unavailable for this scan; the prediction is still valid for research review."
+        else:
+            visualization = resized
+            gradcam_available = False
+            gradcam_message = "Grad-CAM is disabled on the constrained deployment to keep inference within its memory limit."
         success, buffer = cv2.imencode(".png", cv2.cvtColor(visualization, cv2.COLOR_RGB2BGR))
         gradcam_base64 = base64.b64encode(buffer).decode("utf-8")
 
@@ -59,6 +83,8 @@ class DiseaseDetector:
             "confidence": confidence,
             "class_probabilities": class_probabilities,
             "gradcam_image_base64": gradcam_base64,
+            "gradcam_available": gradcam_available,
+            "gradcam_message": gradcam_message,
         }
 
 

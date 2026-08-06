@@ -10,6 +10,8 @@ class PredictionResponse(BaseModel):
     confidence: float
     class_probabilities: Dict[str, float]
     gradcam_image_base64: str
+    gradcam_available: bool = True
+    gradcam_message: Optional[str] = None
 
 
 class ModuleInfo(BaseModel):
