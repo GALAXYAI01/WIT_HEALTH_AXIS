@@ -26,6 +26,8 @@ services:
         value: "1"
       - key: WIT_ENABLE_GRADCAM
         value: "false"
+      - key: WIT_RELEASE
+        value: 20260806-inference-fix-v1
       - key: WIT_JWT_SECRET
         generateValue: true
       - key: WIT_FIELD_ENCRYPTION_KEY

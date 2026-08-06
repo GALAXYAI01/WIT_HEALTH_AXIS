@@ -25,6 +25,8 @@ class HealthResponse(BaseModel):
     available_modules: List[str]
     assistant_configured: bool
     assistant_model: str
+    release: str
+    inference_mode: str
 
 
 class ScanHistoryItem(BaseModel):

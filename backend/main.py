@@ -77,6 +77,8 @@ gemini_client = (
     else None
 )
 CHAT_MODEL = "gemini-3-flash-preview"
+RELEASE = os.environ.get("WIT_RELEASE", "local")
+INFERENCE_MODE = "constrained" if os.environ.get("WIT_ENABLE_GRADCAM", "true").lower() in {"0", "false", "no", "off"} else "full"
 
 SYSTEM_PROMPT = """You are the assistant for WIT Research & Analysis, a research and
 educational tool from Walchand Institute of Technology that screens microscopy images
@@ -243,6 +245,8 @@ def health():
         "available_modules": available_module_names(),
         "assistant_configured": bool(GEMINI_API_KEY and gemini_client),
         "assistant_model": CHAT_MODEL,
+        "release": RELEASE,
+        "inference_mode": INFERENCE_MODE,
     }
 
 
