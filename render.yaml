@@ -32,6 +32,10 @@ services:
         value: 20260806-inference-fp16-v1
       - key: WIT_JWT_SECRET
         generateValue: true
+      - key: WIT_ADMIN_EMAIL
+        sync: false
+      - key: WIT_ADMIN_PASSWORD
+        sync: false
       - key: WIT_FIELD_ENCRYPTION_KEY
         sync: false
       - key: GEMINI_API_KEY

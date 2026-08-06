@@ -38,6 +38,13 @@ with TestClient(main.app) as client:
     )
     assert created_user.status_code == 201, created_user.text
     assert created_user.json()["role"] == "researcher"
+    default_admin = client.post(
+        "/admin/users",
+        headers={"X-CSRF-Token": csrf},
+        json={"email": "default-admin@example.test", "password": "a-secure-admin-password"},
+    )
+    assert default_admin.status_code == 201, default_admin.text
+    assert default_admin.json()["role"] == "admin"
     assert client.post(
         "/admin/users",
         headers={"X-CSRF-Token": csrf},
@@ -63,6 +70,7 @@ print("first-account admin bootstrap: PASS")
 print("bcrypt login and JWT session cookie: PASS")
 print("RBAC admin endpoints: PASS")
 print("admin user creation: PASS")
+print("admin user default role: PASS")
 print("history PDF endpoint: PASS")
 print("admin history deletion and CSRF protection: PASS")
 print("CSRF-protected settings update: PASS")

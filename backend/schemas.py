@@ -78,7 +78,7 @@ class AuthRegisterRequest(AuthCredentials):
 
 
 class AdminUserCreate(AuthCredentials):
-    role: str = "researcher"
+    role: str = "admin"
 
 
 class AuthUser(BaseModel):

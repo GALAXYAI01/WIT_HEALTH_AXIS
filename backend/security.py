@@ -119,14 +119,38 @@ def init_auth_db() -> None:
             "CREATE TABLE IF NOT EXISTS system_settings (setting_key TEXT PRIMARY KEY, setting_value TEXT NOT NULL)"
         )
 
+    _ensure_bootstrap_admin()
+
+
+def _ensure_bootstrap_admin() -> None:
+    """Keep the explicitly configured recovery administrator available after a reset."""
     bootstrap_email = os.environ.get("WIT_ADMIN_EMAIL", "").strip()
     bootstrap_password = os.environ.get("WIT_ADMIN_PASSWORD", "")
-    if bootstrap_email and bootstrap_password:
+    if not bootstrap_email or not bootstrap_password:
+        return
+
+    bootstrap_email = validate_email(bootstrap_email)
+    validate_password(bootstrap_password)
+    with connect_db() as connection:
+        existing = connection.execute(
+            "SELECT id, role, is_active FROM users WHERE email = ?",
+            (bootstrap_email,),
+        ).fetchone()
+
+    if existing is None:
+        create_user(bootstrap_email, bootstrap_password, "admin")
+        LOGGER.info("Bootstrapped the configured admin account from environment configuration")
+        return
+
+    # The bootstrap identity is an explicit recovery administrator. Promote it
+    # back to admin if a database reset or an earlier role assignment changed it.
+    if existing["role"] != "admin" or not existing["is_active"]:
         with connect_db() as connection:
-            existing = connection.execute("SELECT COUNT(*) AS count FROM users").fetchone()["count"]
-        if existing == 0:
-            create_user(bootstrap_email, bootstrap_password, "admin")
-            LOGGER.info("Bootstrapped the first admin account from environment configuration")
+            connection.execute(
+                "UPDATE users SET role = 'admin', is_active = 1 WHERE id = ?",
+                (existing["id"],),
+            )
+        LOGGER.info("Restored admin access for the configured bootstrap account")
 
 
 def create_user(email: str, password: str, role: str = "viewer") -> dict[str, Any]:

@@ -99,7 +99,7 @@
       });
       byId("wit-admin-user-dialog").close();
       form.reset();
-      byId("wit-admin-user-role").value = "researcher";
+      byId("wit-admin-user-role").value = "admin";
       feedback(`Created ${user.email} with ${user.role} access.`);
     } catch (error) {
       feedbackNode.textContent = error.message || "User could not be created.";
@@ -153,7 +153,7 @@
   byId("wit-admin-history-module").addEventListener("change", () => byId("wit-admin-history-search").dispatchEvent(new Event("input")));
   byId("wit-admin-require-auth").addEventListener("change", async (event) => { try { await api("/admin/settings", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ require_auth_for_predictions: event.target.checked }) }); feedback("Prediction access setting saved."); } catch (error) { event.target.checked = !event.target.checked; feedback(error.message, true); } });
   byId("wit-admin-refresh").addEventListener("click", loadAll);
-  byId("wit-admin-create-user").addEventListener("click", () => { const form = byId("wit-admin-user-form"); form.reset(); byId("wit-admin-user-role").value = "researcher"; byId("wit-admin-user-feedback").textContent = ""; byId("wit-admin-user-dialog").showModal(); });
+  byId("wit-admin-create-user").addEventListener("click", () => { const form = byId("wit-admin-user-form"); form.reset(); byId("wit-admin-user-role").value = "admin"; byId("wit-admin-user-feedback").textContent = ""; byId("wit-admin-user-dialog").showModal(); });
   byId("wit-admin-user-cancel").addEventListener("click", () => byId("wit-admin-user-dialog").close());
   byId("wit-admin-user-cancel-secondary").addEventListener("click", () => byId("wit-admin-user-dialog").close());
   byId("wit-admin-user-form").addEventListener("submit", createUser);
