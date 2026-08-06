@@ -214,6 +214,8 @@ header.wit-site-header .wit-nav-accessibility:focus-visible {
 }
 
 header.wit-site-header .wit-nav-mobile {
+  position: relative;
+  z-index: 101;
   display: none;
   align-items: center;
   justify-content: center;
@@ -223,6 +225,8 @@ header.wit-site-header .wit-nav-mobile {
   background: #fff;
   color: var(--wit-nav-ink);
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 header.wit-site-header .wit-nav-mobile:hover,
@@ -301,6 +305,7 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
     right: 16px;
     left: 16px;
     display: grid;
+    z-index: 100;
     gap: 2px;
     padding: 8px;
     border: 1px solid var(--wit-nav-line);

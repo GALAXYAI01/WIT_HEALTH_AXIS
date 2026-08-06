@@ -11,11 +11,29 @@
     { title: "Policies & Ethics", keywords: ["privacy", "terms", "institutional guidelines", "ethics", "patient data", "research"], url: "../policies_wit_research_analysis/code.html" },
   ];
 
-  const searchIcon = Array.from(document.querySelectorAll(".material-symbols-outlined"))
+  let searchIcon = Array.from(document.querySelectorAll(".material-symbols-outlined"))
     .find((element) => element.textContent.trim().toLowerCase() === "search");
-  if (!searchIcon) return;
+  if (!searchIcon) {
+    const header = document.querySelector("header.wit-site-header");
+    const mobileToggle = header?.querySelector(".wit-nav-mobile");
+    const host = mobileToggle?.parentElement || header?.querySelector("nav[aria-label='Primary navigation']")?.parentElement;
+    if (!host) return;
+    const button = document.createElement("button");
+    button.className = "wit-nav-icon text-on-surface-variant hover:text-primary p-2";
+    button.type = "button";
+    button.setAttribute("aria-label", "Search");
+    button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">search</span>';
+    host.insertBefore(button, mobileToggle || null);
+    searchIcon = button.firstElementChild;
+  }
 
-  const wrapper = searchIcon.parentElement;
+  const button = searchIcon.parentElement;
+  const wrapper = button.tagName === "BUTTON" ? document.createElement("div") : button;
+  if (wrapper !== button) {
+    wrapper.className = "wit-search-control relative";
+    button.parentNode.insertBefore(wrapper, button);
+    wrapper.appendChild(button);
+  }
   wrapper.classList.add("relative");
   searchIcon.setAttribute("role", "button");
   searchIcon.setAttribute("tabindex", "0");
@@ -23,7 +41,7 @@
   searchIcon.setAttribute("aria-expanded", "false");
 
   const panel = document.createElement("div");
-  panel.className = "hidden absolute right-0 top-full mt-3 w-72 border border-outline-variant bg-surface-container-lowest p-3 shadow-lg z-50";
+  panel.className = "hidden absolute right-0 top-full mt-3 w-72 max-w-[calc(100vw-32px)] border border-outline-variant bg-surface-container-lowest p-3 shadow-lg z-50";
   panel.innerHTML = `
     <label class="font-label-caps text-label-caps text-primary" for="wit-search-input">Search site</label>
     <input id="wit-search-input" class="mt-2 w-full border border-outline-variant bg-surface px-3 py-2 font-body-sm text-body-sm" type="search" placeholder="Search pages" autocomplete="off" />
@@ -41,7 +59,15 @@
 
   function renderResults(query) {
     results.replaceChildren();
-    getMatches(query).forEach((page) => {
+    const matches = getMatches(query);
+    if (!matches.length) {
+      const empty = document.createElement("p");
+      empty.className = "px-2 py-2 font-body-sm text-body-sm text-on-surface-variant";
+      empty.textContent = `No matching pages for "${query.trim()}".`;
+      results.appendChild(empty);
+      return;
+    }
+    matches.forEach((page) => {
       const link = document.createElement("a");
       link.href = page.url;
       link.className = "block border-t border-outline-variant px-2 py-2 font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary";

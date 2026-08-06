@@ -26,6 +26,7 @@
 
       const panel = document.createElement("div");
       panel.className = "wit-nav-mobile-panel";
+      panel.id = `wit-mobile-nav-${Math.random().toString(36).slice(2)}`;
       panel.setAttribute("aria-label", "Mobile navigation");
       nav.querySelectorAll("a").forEach((sourceLink) => {
         const link = sourceLink.cloneNode(true);
@@ -34,10 +35,14 @@
       });
       header.appendChild(panel);
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-controls", panel.id);
 
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         const open = panel.classList.toggle("is-open");
         toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
       });
 
       document.addEventListener("click", (event) => {
@@ -45,6 +50,7 @@
         if (!panel.contains(event.target)) {
           panel.classList.remove("is-open");
           toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Open navigation");
         }
       });
     });
