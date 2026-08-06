@@ -19,3 +19,4 @@ PyJWT==2.13.0
 python-dotenv
 cryptography
 google-genai
+onnxruntime

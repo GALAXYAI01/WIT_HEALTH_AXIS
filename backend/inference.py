@@ -2,8 +2,72 @@ import base64
 import gc
 import io
 import os
+from pathlib import Path
 
 from src.config import MODULES
+
+
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD = (0.229, 0.224, 0.225)
+
+
+class OnnxDiseaseDetector:
+    """Memory-conscious inference path for small production instances."""
+
+    def __init__(self, module_config, weights_path):
+        import onnxruntime as ort
+
+        self.config = module_config
+        self.session = ort.InferenceSession(
+            weights_path,
+            providers=["CPUExecutionProvider"],
+            sess_options=self._session_options(ort),
+        )
+        self.input_name = self.session.get_inputs()[0].name
+
+    @staticmethod
+    def _session_options(ort):
+        options = ort.SessionOptions()
+        options.intra_op_num_threads = max(1, int(os.environ.get("WIT_TORCH_THREADS", "1")))
+        options.inter_op_num_threads = 1
+        options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+        options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+        return options
+
+    def predict(self, image_bytes):
+        import cv2
+        import numpy as np
+        from PIL import Image
+
+        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        rgb_image = np.array(image)
+        resized = cv2.resize(rgb_image, (self.config.img_size, self.config.img_size))
+        normalized = resized.astype(np.float32) / 255.0
+        normalized = (normalized - np.array(IMAGENET_MEAN, dtype=np.float32)) / np.array(
+            IMAGENET_STD, dtype=np.float32
+        )
+        input_tensor = np.transpose(normalized, (2, 0, 1))[None, ...].astype(np.float32)
+        logits = np.asarray(self.session.run(None, {self.input_name: input_tensor})[0])[0]
+        logits = logits - np.max(logits)
+        probs = np.exp(logits)
+        probs /= np.sum(probs)
+
+        predicted_idx = int(np.argmax(probs))
+        success, buffer = cv2.imencode(
+            ".png", cv2.cvtColor(resized, cv2.COLOR_RGB2BGR)
+        )
+        if not success:
+            raise RuntimeError("could not encode the inference preview")
+        return {
+            "predicted_class": self.config.class_names[predicted_idx],
+            "confidence": float(probs[predicted_idx]),
+            "class_probabilities": {
+                name: float(probs[i]) for i, name in enumerate(self.config.class_names)
+            },
+            "gradcam_image_base64": base64.b64encode(buffer).decode("utf-8"),
+            "gradcam_available": False,
+            "gradcam_message": "Grad-CAM is unavailable on the constrained ONNX Runtime deployment; the prediction remains valid for research review.",
+        }
 
 
 class DiseaseDetector:
@@ -90,9 +154,16 @@ class DiseaseDetector:
 
 def load_available_detectors(device="cpu", names=None):
     detectors = {}
+    constrained_backend = os.environ.get("WIT_INFERENCE_BACKEND", "").strip().lower() == "onnx"
     for name, config in MODULES.items():
         if names is not None and name not in names:
             continue
         if os.path.exists(config.weights_path):
-            detectors[name] = DiseaseDetector(config, config.weights_path, device)
+            onnx_path = str(Path(config.weights_path).with_suffix(".onnx"))
+            if constrained_backend:
+                if not os.path.exists(onnx_path):
+                    raise FileNotFoundError(f"missing ONNX model for {name}: {onnx_path}")
+                detectors[name] = OnnxDiseaseDetector(config, onnx_path)
+            else:
+                detectors[name] = DiseaseDetector(config, config.weights_path, device)
     return detectors
