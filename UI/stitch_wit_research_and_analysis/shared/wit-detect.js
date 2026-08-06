@@ -314,7 +314,10 @@
           switchTab('summary');
         })
         .catch(function(err) {
-          showError(err.message);
+          const message = err && (err.name === 'TypeError' || err.message === 'Failed to fetch')
+            ? 'The analysis service is temporarily unavailable. Please try again in a few seconds.'
+            : err.message;
+          showError(message || 'The analysis service could not complete this scan. Please try again.');
         })
         .finally(function() {
           analyzeBtn.disabled = false;
