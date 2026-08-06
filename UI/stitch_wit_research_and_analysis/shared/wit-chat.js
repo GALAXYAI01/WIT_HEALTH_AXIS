@@ -72,17 +72,17 @@
     .wit-chat-message button { color: #0d5f91; }
     .wit-system-brand {
       display: inline-flex; align-items: center; gap: 9px; color: #082a49 !important;
-      text-decoration: none; white-space: nowrap; font: 700 15px/1 "Public Sans", sans-serif;
-      letter-spacing: .045em;
+      text-decoration: none; white-space: nowrap; font: 800 13px/1 "Plus Jakarta Sans", "Public Sans", sans-serif;
+      letter-spacing: .15em; text-transform: uppercase;
     }
     .wit-system-brand-mark {
       display: inline-grid; place-items: center; width: 30px; height: 30px;
-      background: #082a49; color: #fff; font: 700 12px/1 "Playfair Display", serif;
-      letter-spacing: 0;
+      background: #082a49; color: #fff; font: 800 10px/1 "Plus Jakarta Sans", "Public Sans", sans-serif;
+      letter-spacing: .05em;
     }
     .wit-system-brand-name { display: inline-flex; align-items: center; gap: 5px; }
     .wit-system-brand-name strong { color: #0d5f91; font-weight: 700; }
-    .wit-system-brand-rule { width: 18px; height: 2px; background: #159ca8; }
+    .wit-system-brand-rule { width: 24px; height: 2px; background: #159ca8; }
     .wit-admin-access-link {
       display: inline-flex; align-items: center; min-height: 32px; padding: 6px 10px;
       border: 1px solid #082a49; background: #082a49; color: #fff !important;

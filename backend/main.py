@@ -238,7 +238,12 @@ app.add_middleware(
 
 @app.get("/health", response_model=HealthResponse)
 def health():
-    return {"status": "ok", "available_modules": available_module_names()}
+    return {
+        "status": "ok",
+        "available_modules": available_module_names(),
+        "assistant_configured": bool(GEMINI_API_KEY and gemini_client),
+        "assistant_model": CHAT_MODEL,
+    }
 
 
 @app.get("/modules", response_model=List[ModuleInfo])
@@ -467,10 +472,51 @@ def update_admin_settings(
     return admin_settings(user)
 
 
+def offline_chat_response(message: str) -> tuple[str, str | None]:
+    """Keep platform guidance usable when the external model is unavailable."""
+    prompt = message.strip().lower()
+    navigation = None
+    if any(phrase in prompt for phrase in ("take me", "open ", "go to", "navigate")):
+        destinations = (
+            ("scan history", "history"),
+            ("histopathology", "histopathology"),
+            ("leukemia", "leukemia"),
+            ("malaria", "malaria"),
+            ("guidelines", "guidelines"),
+            ("contact", "contact"),
+            ("about", "about"),
+            ("detection", "detection"),
+            ("home", "home"),
+        )
+        for label, page in destinations:
+            if label in prompt:
+                navigation = page
+                break
+
+    if "grad-cam" in prompt or "gradcam" in prompt:
+        reply = "Grad-CAM highlights image regions that influenced the model. Use it as a research aid, not a diagnosis."
+    elif "malaria" in prompt:
+        reply = "Malaria screening analyzes stained blood-cell images for parasite patterns. Upload a clear smear image and review the probabilities with the heatmap."
+    elif "leukemia" in prompt:
+        reply = "Leukemia screening analyzes blood-cell morphology for the supported research classes. Upload a cell image, then review the prediction and confidence together."
+    elif "histopath" in prompt or "cancer" in prompt:
+        reply = "Histopathology screening analyzes tissue patches for the supported research classes. Use the prediction with its confidence and Grad-CAM context, never as a clinical diagnosis."
+    elif "how" in prompt and ("work" in prompt or "analysis" in prompt or "site" in prompt):
+        reply = "Choose a detection module, upload a microscopy image, and click Analyze. Review Summary, All Probabilities, and Grad-CAM before recording the result."
+    elif "history" in prompt:
+        reply = "Scan History lists completed analyses with prediction, confidence, date, and details. Use the search and filters to find a previous scan."
+    elif "platform" in prompt or "site" in prompt or "what does" in prompt:
+        reply = "WIT Research & Analysis is a research and educational microscopy platform for malaria, leukemia, and histopathology screening. Start with Detection to choose a module."
+    else:
+        reply = "The assistant is in offline guidance mode while the AI provider is unavailable. Ask about analysis, Grad-CAM, a supported disease, or Scan History."
+    return reply, navigation
+
+
 @app.post("/chat")
 def chat(req: ChatRequest, request: Request):
     if not GEMINI_API_KEY or gemini_client is None:
-        return {"reply": "The assistant service is online, but AI responses are not configured yet. Please add GEMINI_API_KEY to the deployment environment and restart the service.", "navigate": None}
+        reply_text, navigate_page = offline_chat_response(req.messages[-1].content)
+        return {"reply": reply_text, "navigate": navigate_page}
     contents = [
         {"role": ("model" if m.role == "assistant" else "user"), "parts": [{"text": m.content}]}
         for m in req.messages[-20:]
@@ -491,7 +537,8 @@ def chat(req: ChatRequest, request: Request):
     except Exception:
         LOGGER.exception("chat provider request failed")
         record_audit(request, "chat_provider_failed", "assistant")
-        return {"reply": "The assistant service is online, but its AI provider did not respond. Please check the Gemini API configuration or quota and try again.", "navigate": None}
+        reply_text, navigate_page = offline_chat_response(req.messages[-1].content)
+        return {"reply": reply_text, "navigate": navigate_page}
     reply_text = response.text or ""
     navigate_page = None
     if response.function_calls:

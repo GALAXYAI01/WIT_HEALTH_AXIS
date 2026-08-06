@@ -1,10 +1,12 @@
 (function() {
-  const host = window.location.hostname || "127.0.0.1";
-  const localHost = host === "127.0.0.1" || host === "localhost" || window.location.protocol === "file:";
-  const API_BASE = window.WIT_API_BASE || (localHost
-    ? `${window.location.protocol === "https:" ? "https" : "http"}://${host}:8000`
-    : window.location.origin);
-  const config = window.WIT_CONFIG;
+  const runtimeWindow = typeof window !== "undefined" ? window : globalThis;
+  const runtimeLocation = runtimeWindow.location || { hostname: "127.0.0.1", protocol: "http:", origin: "http://127.0.0.1:8000" };
+  const host = runtimeLocation.hostname || "127.0.0.1";
+  const localHost = host === "127.0.0.1" || host === "localhost" || runtimeLocation.protocol === "file:";
+  const API_BASE = runtimeWindow.WIT_API_BASE || (localHost
+    ? `${runtimeLocation.protocol === "https:" ? "https" : "http"}://${host}:8000`
+    : runtimeLocation.origin);
+  const config = runtimeWindow.WIT_CONFIG;
 
   const fileInput = document.getElementById('wit-file-input');
   const preview = document.getElementById('wit-image-preview');
@@ -122,7 +124,7 @@
 
   function readTiffPreview(file) {
     return new Promise(function(resolve, reject) {
-      if (!window.UTIF) {
+      if (!runtimeWindow.UTIF) {
         reject(new Error('TIFF preview decoder is not loaded'));
         return;
       }
@@ -130,10 +132,10 @@
       reader.onerror = function() { reject(new Error('The selected microscopy file could not be read')); };
       reader.onload = function(event) {
         try {
-          const ifds = window.UTIF.decode(event.target.result);
+          const ifds = runtimeWindow.UTIF.decode(event.target.result);
           if (!ifds || !ifds.length) throw new Error('No preview frame found');
-          window.UTIF.decodeImage(event.target.result, ifds[0]);
-          const rgba = window.UTIF.toRGBA8(ifds[0]);
+          runtimeWindow.UTIF.decodeImage(event.target.result, ifds[0]);
+          const rgba = runtimeWindow.UTIF.toRGBA8(ifds[0]);
           const source = document.createElement('canvas');
           source.width = ifds[0].width;
           source.height = ifds[0].height;
@@ -160,7 +162,7 @@
   function renderFilePreview(file) {
     resetPreview();
     if (isTiffLike(file)) {
-      if (!window.UTIF) {
+      if (!runtimeWindow.UTIF) {
         showPreviewFallback(file, 'Preview unavailable; the original file is still ready for analysis.');
         return;
       }
@@ -208,7 +210,7 @@
       }
     });
   }
-  window.witSwitchTab = switchTab;
+  runtimeWindow.witSwitchTab = switchTab;
 
   function renderResults(data) {
     lastResult = data;
@@ -250,7 +252,7 @@
 
     if (downloadBtn) downloadBtn.disabled = false;
   }
-  window.witRenderResults = renderResults;
+  runtimeWindow.witRenderResults = renderResults;
 
   if (analyzeBtn) {
     analyzeBtn.addEventListener('click', function() {
@@ -309,7 +311,7 @@
   }
 
   function generatePdfReport(data, cfg, imageDataUrl) {
-    const jsPDFCtor = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    const jsPDFCtor = runtimeWindow.jspdf ? runtimeWindow.jspdf.jsPDF : runtimeWindow.jsPDF;
     if (!jsPDFCtor) { showError('PDF library not loaded.'); return; }
     const doc = new jsPDFCtor({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const pageWidth = doc.internal && doc.internal.pageSize && typeof doc.internal.pageSize.getWidth === 'function'
@@ -645,5 +647,5 @@
 
     doc.save(moduleName + '-detection-report.pdf');
   }
-  window.witGeneratePdfReport = generatePdfReport;
+  runtimeWindow.witGeneratePdfReport = generatePdfReport;
 })();

@@ -21,6 +21,8 @@ class ModuleInfo(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     available_modules: List[str]
+    assistant_configured: bool
+    assistant_model: str
 
 
 class ScanHistoryItem(BaseModel):
