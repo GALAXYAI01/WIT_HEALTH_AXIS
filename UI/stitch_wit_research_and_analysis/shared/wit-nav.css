@@ -47,6 +47,14 @@ header.wit-site-header > div > div {
   white-space: nowrap;
 }
 
+.wit-nav-logo {
+  display: block;
+  width: min(230px, calc(100vw - 94px));
+  height: 46px;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .wit-nav-brand:hover {
   color: var(--wit-nav-blue) !important;
 }
@@ -302,6 +310,11 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
     display: inline-flex;
   }
 
+  .wit-nav-logo {
+    width: min(210px, calc(100vw - 88px));
+    height: 42px;
+  }
+
   header.wit-site-header .wit-nav-accessibility {
     display: none;
   }
@@ -363,6 +376,11 @@ header.wit-site-header.wit-admin-header nav[aria-label="Admin navigation"] butto
 
   .wit-nav-brand {
     gap: 8px;
+  }
+
+  .wit-nav-logo {
+    width: min(190px, calc(100vw - 78px));
+    height: 38px;
   }
 
   .wit-nav-mark {
